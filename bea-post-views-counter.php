@@ -12,7 +12,6 @@
 
  TODO:
 	WP_Query sample for by views
-	Full PHP Implementation
 	Admin columns
 	Include : Everyone, Guests Only, Registered Users Only
 	Exclude : Bot Views, IP
@@ -68,7 +67,7 @@ function _bea_pb_load_files($dir, $files, $prefix = '') {
 _bea_pb_load_files(BEA_PVC_DIR . 'functions/', array('api', 'template'));
 
 // Plugin client classes
-_bea_pb_load_files(BEA_PVC_DIR . 'classes/', array('main', 'plugin', 'widget', 'counter'));
+_bea_pb_load_files(BEA_PVC_DIR . 'classes/', array('main', 'plugin', 'widget', 'counter', 'query'));
 
 // Plugin admin classes
 if (is_admin()) {
@@ -86,6 +85,7 @@ function init_bea_pvc_plugin() {
 
 	// Client
 	new BEA_PVC_Main();
+	new BEA_PVC_Query();
 
 	// Admin
 	if (is_admin()) {
