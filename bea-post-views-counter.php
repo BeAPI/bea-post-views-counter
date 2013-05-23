@@ -11,7 +11,6 @@
  Text Domain: bea-post-views-counter
 
  TODO:
-	Admin columns
 	Include : Everyone, Guests Only, Registered Users Only
 	Exclude : Bot Views, IP
 	Shortcode
