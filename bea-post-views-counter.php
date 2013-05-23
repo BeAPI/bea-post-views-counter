@@ -11,12 +11,10 @@
  Text Domain: bea-post-views-counter
 
  TODO:
-	WP_Query sample for by views
 	Admin columns
 	Include : Everyone, Guests Only, Registered Users Only
 	Exclude : Bot Views, IP
 	Shortcode
-	Widget
 	Import from WP Post Views / Post view counter
 
  ----
@@ -93,5 +91,5 @@ function init_bea_pvc_plugin() {
 	}
 
 	// Widget
-	// add_action('widgets_init', create_function('', 'return register_widget("BEA_PVC_Widget");'));
+	add_action('widgets_init', create_function('', 'return register_widget("BEA_PVC_Widget");'));
 }

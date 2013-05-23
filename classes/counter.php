@@ -218,6 +218,14 @@ class BEA_PVC_Counter {
 		return $this->_data;
 	}
 	
+	public function get_data_value( $field ) {
+		if ( isset($this->_data[$field]) ) {
+			return $this->_data[$field];
+		}
+		
+		return '';
+	}
+	
 	public function get_post_id() {
 		return $this->_id;
 	}
