@@ -33,7 +33,7 @@ class BEA_PVC_Plugin {
 		) $charset_collate;");
 
 		// Default options
-		add_option('bea-pvc-main', array('mode' => 'js-wp', 'include' => 'all', 'exclude' => '', 'exclude_ips' => ''));
+		add_option('bea-pvc-main', array('mode' => 'js-wp', 'include' => 'all', 'exclude' => array(), 'exclude_ips' => '', 'session' => '0'));
 	}
 
 	public static function deactivate() {

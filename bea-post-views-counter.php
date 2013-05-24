@@ -11,9 +11,9 @@
  Text Domain: bea-post-views-counter
 
  TODO:
-	Visitors history ? _SESSION ?
 	Shortcode
 	Import from Post view counter
+	Check mode before increment
 
  ----
 
@@ -81,6 +81,14 @@ register_deactivation_hook(__FILE__, array('BEA_PVC_Plugin', 'deactivate'));
 
 add_action('plugins_loaded', 'init_bea_pvc_plugin');
 function init_bea_pvc_plugin() {
+	// Init session
+	$current_options = get_option('bea-pvc-main');
+	if ( isset($current_options['session']) && isset($current_options['session']) == 'on' ) {
+		if (!isset($_SESSION)) {
+			session_start();
+		}
+	}
+			
 	// Load translations
 	load_plugin_textdomain('bea-post-views-counter', false, basename(BEA_PVC_DIR) . '/languages');
 

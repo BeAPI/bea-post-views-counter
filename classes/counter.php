@@ -276,6 +276,8 @@ class BEA_PVC_Counter {
 			return true;
 		}
 		
+		// TODO: Check mode
+		
 		// Exclude must be an array
 		$current_options['exclude'] = !isset($current_options['exclude']) ? array() : $current_options['exclude'];
 		$current_options['exclude'] = (array) $current_options['exclude'];
@@ -307,6 +309,25 @@ class BEA_PVC_Counter {
 			return false;
 		} elseif ( $current_options['include'] == 'registered' && function_exists('is_user_logged_in') && !is_user_logged_in() ) {
 			return false;
+		}
+		
+		// Session check
+		if ( isset($current_options['session']) && isset($current_options['session']) == 'on' ) {
+			// Start session here for Pure PHP
+			if (!isset($_SESSION)) {
+				session_start();
+			}
+			
+			// Default val
+			$_SESSION['bea_pvc_post_ids'] = ( !isset($_SESSION['bea_pvc_post_ids']) || !is_array($_SESSION['bea_pvc_post_ids']) ) ? array() : $_SESSION['post_ids'];
+			
+			// Already view ?
+			if ( in_array($this->_id, $_SESSION['bea_pvc_post_ids']) ) {
+				return false;
+			}
+			
+			// Append current view to session
+			$_SESSION['bea_pvc_post_ids'][] = $this->_id;
 		}
 		
 		return true;
