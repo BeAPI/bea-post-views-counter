@@ -13,7 +13,7 @@
  TODO:
 	Visitors history ? _SESSION ?
 	Shortcode
-	Import from WP Post Views / Post view counter
+	Import from Post view counter
 
  ----
 
