@@ -7,6 +7,9 @@ if ( $debug == 1 ) {
 	ini_set( 'display_errors', 0 );
 }
 
+// Define current mode
+define( 'BEA_PVC_PHP_MODE', true );
+
 // Shortinit, if bootstrap filter failed
 define( 'SHORTINIT', true );
 

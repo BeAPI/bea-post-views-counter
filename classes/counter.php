@@ -276,7 +276,14 @@ class BEA_PVC_Counter {
 			return true;
 		}
 		
-		// TODO: Check mode
+		// Compare DB mode with current mode...
+		if ( isset($current_options['mode']) && $current_options['mode'] == 'inline' && (defined('BEA_PVC_PHP_MODE') || defined('DOING_AJAX')) ) { // Inline counter
+			return false;
+		} elseif ( isset($current_options['mode']) && $current_options['mode'] == 'js-php' && !defined('BEA_PVC_PHP_MODE') ) { // Pure PHP
+			return false;
+		} elseif ( isset($current_options['mode']) && !in_array($current_options['mode'], array('js-php', 'inline')) && !defined('DOING_AJAX') ) { // Default JS WP
+			return false;
+		}
 		
 		// Exclude must be an array
 		$current_options['exclude'] = !isset($current_options['exclude']) ? array() : $current_options['exclude'];
@@ -312,7 +319,7 @@ class BEA_PVC_Counter {
 		}
 		
 		// Session check
-		if ( isset($current_options['session']) && isset($current_options['session']) == 'on' ) {
+		if ( isset($current_options['session']) && $current_options['session'] == 'on' ) {
 			// Start session here for Pure PHP
 			if (!isset($_SESSION)) {
 				session_start();

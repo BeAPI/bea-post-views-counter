@@ -13,7 +13,6 @@
  TODO:
 	Shortcode
 	Import from Post view counter
-	Check mode before increment
 
  ----
 
