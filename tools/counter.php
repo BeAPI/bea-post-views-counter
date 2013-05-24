@@ -42,12 +42,16 @@ class BEA_PVC_Counter_Full_PHP extends BEA_PVC_Counter {
 	}
 	
 	protected function _get_table_name() {
-		global $table_prefix;
+		global $table_prefix, $wpdb;
 		
-		if ( $this->_blog_id == 1 ) {
-			return $table_prefix . 'post_views_counter';
-		} else {
-			return $table_prefix . $this->_blog_id . '_' . 'post_views_counter';
+		if ( defined('WPINC') ) { // Shortinit, but config_only not work
+			return $wpdb->prefix . 'post_views_counter';
+		} else { // PURE PURE PHP
+			if ( $this->_blog_id == 1 ) {
+				return $table_prefix . 'post_views_counter';
+			} else {
+				return $table_prefix . $this->_blog_id . '_' . 'post_views_counter';
+			}
 		}
 	}
 	
