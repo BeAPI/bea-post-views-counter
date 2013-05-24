@@ -181,11 +181,10 @@ class BEA_PVC_Counter {
 
 		if ($this->_insertion == true) {
 			$this->_data['post_id'] = $this->_id;
-			$this->_insert($this->_get_table_name(), $this->_data);
+			return $this->_insert($this->_get_table_name(), $this->_data);
 		} else {
-			$this->_update($this->_get_table_name(), $this->_data, array('post_id' => $this->_id));
+			return $this->_update($this->_get_table_name(), $this->_data, array('post_id' => $this->_id));
 		}
-		return true;
 	}
 
 	protected static function _filter_diff($value) {

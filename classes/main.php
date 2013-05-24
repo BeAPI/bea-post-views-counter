@@ -11,8 +11,9 @@ class BEA_PVC_Main {
 	public static function wp_ajax_callback() {
 		if ( isset($_GET['post_id']) && (int) $_GET['post_id'] > 0 ) {
 			$counter = new BEA_PVC_Counter($_GET['post_id']);
-			$counter->increment();
-			die('1');
+			$result = $counter->increment();
+	
+			die( ($result == true) ? '1' : '-1' );
 		}
 	}
 	
