@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class for counter object, make abstraction for DB request, allow full PHP implementation with child
  */
@@ -10,13 +11,13 @@ class BEA_PVC_Counter {
 	protected $_current_time = 0;
 	public $increment_sequence = 1;
 
-	public function __construct( $post_id = 0, $auto_fill = true ) {
+	public function __construct($post_id = 0, $auto_fill = true) {
 		$post_id = (int) $post_id;
-		if ( $post_id > 0 ) {
-			$this->_current_time = gmdate( 'Y-m-d H:i:s' );
+		if ($post_id > 0) {
+			$this->_current_time = gmdate('Y-m-d H:i:s');
 			$this->_id = $post_id;
 
-			if ( $auto_fill == true ) {
+			if ($auto_fill == true) {
 				$this->_fill_data();
 			}
 		}
@@ -36,8 +37,8 @@ class BEA_PVC_Counter {
 	}
 
 	protected function _fill_data() {
-		$this->_data = $this->_get_row( sprintf( "SELECT *, %s FROM %s WHERE post_id = %d", $this->_get_sql_fields(), $this->_get_table_name(), $this->_id ) );
-		if ( $this->_data == false ) {
+		$this->_data = $this->_get_row(sprintf("SELECT *, %s FROM %s WHERE post_id = %d", $this->_get_sql_fields(), $this->_get_table_name(), $this->_id));
+		if ($this->_data == false) {
 			// Mark flag for insertion request
 			$this->_insertion = true;
 
@@ -62,7 +63,7 @@ class BEA_PVC_Counter {
 				'total' => 0
 			);
 		} else {
-			unset( $this->_data['post_id'] );
+			unset($this->_data['post_id']);
 		}
 	}
 
@@ -75,15 +76,19 @@ class BEA_PVC_Counter {
 	public function delete() {
 		global $wpdb;
 
-		if ( !$this->exists() ) {
+		if (!$this->exists()) {
 			return false;
 		}
 
-		return $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->post_views_counter WHERE post_id = %d", $this->_id ) );
+		return $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->post_views_counter WHERE post_id = %d", $this->_id));
 	}
 
-	public function increment() {
-		if ( !$this->exists() ) {
+	public function increment( $force = false ) {
+		if (!$this->exists()) {
+			return false;
+		}
+
+		if ( !$this->is_allowed_to_increment() && $force == false ) {
 			return false;
 		}
 
@@ -98,26 +103,26 @@ class BEA_PVC_Counter {
 	}
 
 	public function increment_day() {
-		if ( !$this->exists() ) {
+		if (!$this->exists()) {
 			return false;
 		}
 
-		if ( !$this->_is_same_date( 'd/m/Y', $this->_data['day_date'] ) ) {
+		if (!$this->_is_same_date('d/m/Y', $this->_data['day_date'])) {
 			$this->_data['day_date'] = $this->_current_time;
 			$this->_data['previous_day_counter'] = ( (int) $this->_data['day_date_diff'] > 1 ) ? 0 : $this->_data['day_counter'];
 			$this->_data['day_counter'] = 0;
 		}
-		
+
 		$this->_data['day_counter'] += $this->increment_sequence;
 		return true;
 	}
 
 	public function increment_week() {
-		if ( !$this->exists() ) {
+		if (!$this->exists()) {
 			return false;
 		}
 
-		if ( !$this->_is_same_date( 'W/Y', $this->_data['week_date'] ) ) {
+		if (!$this->_is_same_date('W/Y', $this->_data['week_date'])) {
 			$this->_data['week_date'] = $this->_current_time;
 			$this->_data['previous_week_counter'] = ( (int) $this->_data['week_date_diff'] > 1 ) ? 0 : $this->_data['week_counter'];
 			$this->_data['week_counter'] = 0;
@@ -128,11 +133,11 @@ class BEA_PVC_Counter {
 	}
 
 	public function increment_month() {
-		if ( !$this->exists() ) {
+		if (!$this->exists()) {
 			return false;
 		}
 
-		if ( !$this->_is_same_date( 'm/Y', $this->_data['month_date'] ) ) {
+		if (!$this->_is_same_date('m/Y', $this->_data['month_date'])) {
 			$this->_data['month_date'] = $this->_current_time;
 			$this->_data['previous_month_counter'] = ( (int) $this->_data['month_date_diff'] > 1 ) ? 0 : $this->_data['month_counter'];
 			$this->_data['month_counter'] = 0;
@@ -143,11 +148,11 @@ class BEA_PVC_Counter {
 	}
 
 	public function increment_year() {
-		if ( !$this->exists() ) {
+		if (!$this->exists()) {
 			return false;
 		}
 
-		if ( !$this->_is_same_date( 'Y', $this->_data['year_date'] ) ) {
+		if (!$this->_is_same_date('Y', $this->_data['year_date'])) {
 			$this->_data['year_date'] = $this->_current_time;
 			$this->_data['previous_year_counter'] = ( (int) $this->_data['year_date_diff'] > 1 ) ? 0 : $this->_data['year_counter'];
 			$this->_data['year_counter'] = 0;
@@ -158,7 +163,7 @@ class BEA_PVC_Counter {
 	}
 
 	public function increment_total() {
-		if ( !$this->exists() ) {
+		if (!$this->exists()) {
 			return false;
 		}
 
@@ -167,23 +172,23 @@ class BEA_PVC_Counter {
 	}
 
 	public function commit() {
-		if ( !$this->exists() ) {
+		if (!$this->exists()) {
 			return false;
 		}
-		
+
 		// Remove diff field before commit
 		unset($this->_data['day_date_diff'], $this->_data['week_date_diff'], $this->_data['month_date_diff'], $this->_data['year_date_diff']);
-		
-		if ( $this->_insertion == true ) {
+
+		if ($this->_insertion == true) {
 			$this->_data['post_id'] = $this->_id;
-			$this->_insert( $this->_get_table_name(), $this->_data );
+			$this->_insert($this->_get_table_name(), $this->_data);
 		} else {
-			$this->_update( $this->_get_table_name(), $this->_data, array( 'post_id' => $this->_id ) );
+			$this->_update($this->_get_table_name(), $this->_data, array('post_id' => $this->_id));
 		}
 		return true;
 	}
 
-	protected static function _filter_diff( $value ) {
+	protected static function _filter_diff($value) {
 		return !in_array($value, array('day_date_diff'));
 	}
 
@@ -192,42 +197,42 @@ class BEA_PVC_Counter {
 		return $wpdb->post_views_counter;
 	}
 
-	protected function _get_row( $query = "" ) {
+	protected function _get_row($query = "") {
 		global $wpdb;
-		return $wpdb->get_row( $query, ARRAY_A );
+		return $wpdb->get_row($query, ARRAY_A);
 	}
 
-	protected function _insert( $table_name = '', $values = array( ) ) {
+	protected function _insert($table_name = '', $values = array()) {
 		global $wpdb;
-		return $wpdb->insert( $table_name, $values );
+		return $wpdb->insert($table_name, $values);
 	}
 
-	protected function _update( $table_name = '', $values = array( ), $where = array( ) ) {
+	protected function _update($table_name = '', $values = array(), $where = array()) {
 		global $wpdb;
-		return $wpdb->update( $table_name, $values, $where );
+		return $wpdb->update($table_name, $values, $where);
 	}
 
-	protected function _format_date( $format = '', $date = '' ) {
-		$timestamp = strtotime( $date );
-		if ( $timestamp == 0 ) {
+	protected function _format_date($format = '', $date = '') {
+		$timestamp = strtotime($date);
+		if ($timestamp == 0) {
 			$timestamp = time();
 		}
 
-		return date( $format, $timestamp );
+		return date($format, $timestamp);
 	}
 
-	protected function _is_same_date( $format = '', $date1 = false, $date2 = false ) {
+	protected function _is_same_date($format = '', $date1 = false, $date2 = false) {
 		// Date1 is required
-		if ( $date1 == false ) {
+		if ($date1 == false) {
 			return false;
 		}
 
 		// Date2 is optionnal, get it from class variable
-		if ( $date2 == false ) {
+		if ($date2 == false) {
 			$date2 = $this->_current_time;
 		}
 
-		if ( $this->_format_date( $format, $date1 ) == $this->_format_date( $format, $date2 ) ) {
+		if ($this->_format_date($format, $date1) == $this->_format_date($format, $date2)) {
 			return true;
 		}
 
@@ -238,8 +243,8 @@ class BEA_PVC_Counter {
 		return $this->_data;
 	}
 
-	public function get_data_value( $field ) {
-		if ( isset( $this->_data[$field] ) ) {
+	public function get_data_value($field) {
+		if (isset($this->_data[$field])) {
 			return $this->_data[$field];
 		}
 
@@ -248,6 +253,88 @@ class BEA_PVC_Counter {
 
 	public function get_post_id() {
 		return $this->_id;
+	}
+
+	public function is_allowed_to_increment() {
+		$current_options = $this->get_option('bea-pvc-main');
+		if ( $current_options == false ) { // No option ? Allow everyone !
+			return true;
+		}
+		
+		// Exclude must be an array
+		$current_options['exclude'] = !isset($current_options['exclude']) ? array() : $current_options['exclude'];
+		$current_options['exclude'] = (array) $current_options['exclude'];
+		
+		// Exclusion : Robots
+		if ( in_array('robots', $current_options['exclude']) && $this->is_robots() ) {
+			return false;
+		}
+		
+		// Exclusion : Logged administrator
+		if ( in_array('administrator', $current_options['exclude']) && function_exists('current_user_can') && current_user_can('administrator') ) {
+			return false;
+		}
+		
+		// Exclusion IPs
+		if ( isset($current_options['exclude_ips']) && !empty($current_options['exclude_ips']) ) {
+			$current_options['exclude_ips'] = explode(',', $current_options['exclude_ips']);
+			$current_options['exclude_ips'] = array_filter($current_options['exclude_ips'], 'strlen'); 
+			
+			$current_user_ip = self::get_user_ip();
+			if ( in_array($current_user_ip, $current_options['exclude_ips']) ) {
+				return false;
+			}
+		}
+		
+		// Inclusion, all, guest only, logged only
+		$current_options['include'] = !isset($current_options['include']) ? 'all' : $current_options['include'];
+		if ( $current_options['include'] == 'guests' && function_exists('is_user_logged_in') && is_user_logged_in() ) {
+			return false;
+		} elseif ( $current_options['include'] == 'registered' && function_exists('is_user_logged_in') && !is_user_logged_in() ) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	protected function get_option( $option_name = '' ) {
+		return get_option( $option_name );
+	}
+
+
+	/**
+	 * Get current user IP, try all known sources 
+	 * 
+	 * @return string
+	 */
+	public static function get_user_ip() {
+		$ipaddress = false;
+		if ( isset( $_SERVER['HTTP_CLIENT_IP'] ) && !empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+			$ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+			$ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} elseif ( isset( $_SERVER['HTTP_X_FORWARDED'] ) && !empty( $_SERVER['HTTP_X_FORWARDED'] ) ) {
+			$ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+		} elseif ( isset( $_SERVER['HTTP_FORWARDED_FOR'] ) && !empty( $_SERVER['HTTP_FORWARDED_FOR'] ) ) {
+			$ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+		} elseif ( isset( $_SERVER['HTTP_FORWARDED'] ) && !empty( $_SERVER['HTTP_FORWARDED'] ) ) {
+			$ipaddress = $_SERVER['HTTP_FORWARDED'];
+		} elseif ( isset( $_SERVER['REMOTE_ADDR'] ) && !empty( $_SERVER['REMOTE_ADDR'] ) ) {
+			$ipaddress = $_SERVER['REMOTE_ADDR'];
+		}
+
+		return $ipaddress;
+	}
+
+	protected function is_robots() {
+		$bots = array('Google Bot' => 'googlebot', 'Google Bot' => 'google', 'MSN' => 'msnbot', 'Alex' => 'ia_archiver', 'Lycos' => 'lycos', 'Ask Jeeves' => 'jeeves', 'Altavista' => 'scooter', 'AllTheWeb' => 'fast-webcrawler', 'Inktomi' => 'slurp@inktomi', 'Turnitin.com' => 'turnitinbot', 'Technorati' => 'technorati', 'Yahoo' => 'yahoo', 'Findexa' => 'findexa', 'NextLinks' => 'findlinks', 'Gais' => 'gaisbo', 'WiseNut' => 'zyborg', 'WhoisSource' => 'surveybot', 'Bloglines' => 'bloglines', 'BlogSearch' => 'blogsearch', 'PubSub' => 'pubsub', 'Syndic8' => 'syndic8', 'RadioUserland' => 'userland', 'Gigabot' => 'gigabot', 'Become.com' => 'become.com');
+		foreach ($bots as $bot) {
+			if (stristr($_SERVER['HTTP_USER_AGENT'], $bot) !== false) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }

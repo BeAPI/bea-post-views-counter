@@ -11,8 +11,7 @@
  Text Domain: bea-post-views-counter
 
  TODO:
-	Include : Everyone, Guests Only, Registered Users Only
-	Exclude : Bot Views, IP
+	Visitors history ? _SESSION ?
 	Shortcode
 	Import from WP Post Views / Post view counter
 
@@ -68,7 +67,12 @@ _bea_pb_load_files(BEA_PVC_DIR . 'classes/', array('main', 'plugin', 'widget', '
 
 // Plugin admin classes
 if (is_admin()) {
-	_bea_pb_load_files(BEA_PVC_DIR . 'classes/admin/', array('main'));
+	_bea_pb_load_files(BEA_PVC_DIR . 'classes/admin/', array('main', 'settings'));
+	
+	// Load class for API settings
+	if ( !class_exists('WeDevs_Settings_API') ) {
+		require_once(BEA_PVC_DIR.'librairies/wordpress-settings-api-class/class.settings-api.php');
+	}
 }
 
 // Plugin activate/desactive hooks
@@ -87,6 +91,7 @@ function init_bea_pvc_plugin() {
 	// Admin
 	if (is_admin()) {
 		new BEA_PVC_Admin_Main();
+		new BEA_PVC_Admin_Settings();
 	}
 
 	// Widget

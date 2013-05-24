@@ -97,7 +97,7 @@ class MySQL {
 	
 	
 	// Performs a 'mysql_real_escape_string' on the entire array/string
-	private function SecureData($data){
+	public function SecureData($data){
 		if(is_array($data)){
 			foreach($data as $key=>$val){
 				if(!is_array($data[$key])){

@@ -67,15 +67,19 @@ class BEA_PVC_Counter_Full_PHP extends BEA_PVC_Counter {
 	}
 
 	protected function _get_table_name() {
+		return $this->_get_prefix() . 'post_views_counter';
+	}
+	
+	private function _get_prefix() {
 		global $table_prefix, $wpdb;
 
 		if ( defined( 'WPINC' ) ) { // Shortinit, but config_only not work
-			return $wpdb->prefix . 'post_views_counter';
+			return $wpdb->prefix;
 		} else { // PURE PURE PHP
 			if ( $this->_blog_id == 1 ) {
-				return $table_prefix . 'post_views_counter';
+				return $table_prefix;
 			} else {
-				return $table_prefix . $this->_blog_id . '_' . 'post_views_counter';
+				return $table_prefix . $this->_blog_id . '_';
 			}
 		}
 	}
@@ -93,11 +97,21 @@ class BEA_PVC_Counter_Full_PHP extends BEA_PVC_Counter {
 	protected function _update( $table_name = '', $values = array( ), $where = array( ) ) {
 		return $this->_db->Update( $table_name, $values, $where );
 	}
+	
+	protected function get_option( $option_name = '' ) {
+		$result = $this->_get_row( sprintf("SELECT option_value FROM " . $this->_get_prefix() . "options WHERE option_name = '%s'", $this->_db->SecureData($option_name)) );
+		if ( $result != false ) {
+			return unserialize($result['option_value']);
+		} else {
+			return false;
+		}
+	}
 }
 
 if ( isset( $_GET['post_id'] ) && (int) $_GET['post_id'] > 0 && isset( $_GET['blog_id'] ) && (int) $_GET['blog_id'] > 0 ) {
 	$counter = new BEA_PVC_Counter_Full_PHP( (int) $_GET['post_id'], (int) $_GET['blog_id'] );
-	$counter->increment();
-	die( '1' );
+	$result = $counter->increment();
+	
+	die( ($result == true) ? '1' : '-1' );
 }
 die( '0' );

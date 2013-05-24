@@ -27,11 +27,15 @@ class BEA_PVC_Main {
 			return false;
 		}
 		
-		$mode = 'wp-integration';
-		if ( $mode == 'wp-integration' ) {
+		$current_options = get_option('bea-pvc-main');
+		if ( isset($current_options['mode']) && $current_options['mode'] == 'inline' ) { // Inline counter
+			$counter = new BEA_PVC_Counter( get_queried_object_id() );
+			$counter->increment();
+			return true;
+		} elseif ( isset($current_options['mode']) && $current_options['mode'] == 'js-php' ) { // Pure PHP
+			$url = BEA_PVC_URL . 'tools/counter.php?post_id='.  get_queried_object_id().'&blog_id='.$wpdb->blogid;
+		} else { // Default JS WP
 			$url = admin_url( 'admin-ajax.php?action=bea-pvc-counter&post_id='.  get_queried_object_id(), 'relative' );
-		} elseif ( $mode == 'php-integration' ) {
-			$url = BEA_PVC_URL . '/tools/counter.php?post_id='.  get_queried_object_id().'&blog_id='.$wpdb->blogid;
 		}
 		
 		echo "<script type='text/javascript'>";
@@ -41,6 +45,7 @@ class BEA_PVC_Main {
 		echo "var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(bpvc, s);";
 		echo "})();";
 		echo "</script>";
+		return true;
 	}
 	
 	public static function deleted_post( $post_id = 0 ) {
