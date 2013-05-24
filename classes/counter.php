@@ -41,30 +41,33 @@ class BEA_PVC_Counter {
 		if ($this->_data == false) {
 			// Mark flag for insertion request
 			$this->_insertion = true;
-
-			// Default values
-			$this->_data = array(
-				'day_counter' => 0,
-				'day_date' => $this->_current_time,
-				'day_date_diff' => 0,
-				'previous_day_counter' => 0,
-				'week_counter' => 0,
-				'week_date' => $this->_current_time,
-				'week_date_diff' => 0,
-				'previous_week_counter' => 0,
-				'month_counter' => 0,
-				'month_date' => $this->_current_time,
-				'month_date_diff' => 0,
-				'previous_month_counter' => 0,
-				'year_counter' => 0,
-				'year_date' => $this->_current_time,
-				'year_date_diff' => 0,
-				'previous_year_counter' => 0,
-				'total' => 0
-			);
+			$this->load_default_data();			
 		} else {
 			unset($this->_data['post_id']);
 		}
+	}
+	
+	public function load_default_data() {
+		// Default values
+		$this->_data = array(
+			'day_counter' => 0,
+			'day_date' => $this->_current_time,
+			'day_date_diff' => 0,
+			'previous_day_counter' => 0,
+			'week_counter' => 0,
+			'week_date' => $this->_current_time,
+			'week_date_diff' => 0,
+			'previous_week_counter' => 0,
+			'month_counter' => 0,
+			'month_date' => $this->_current_time,
+			'month_date_diff' => 0,
+			'previous_month_counter' => 0,
+			'year_counter' => 0,
+			'year_date' => $this->_current_time,
+			'year_date_diff' => 0,
+			'previous_year_counter' => 0,
+			'total' => 0
+		);
 	}
 
 	/**
@@ -248,6 +251,19 @@ class BEA_PVC_Counter {
 		}
 
 		return '';
+	}
+	
+	public function set_data( $data = array() ) {
+		$this->_data = $data;
+	}
+	
+	public function set_data_value($field = '', $value = '') {
+		if (isset($this->_data[$field])) {
+			$this->_data[$field] = $value;
+			return true;
+		}
+
+		return false;
 	}
 
 	public function get_post_id() {
