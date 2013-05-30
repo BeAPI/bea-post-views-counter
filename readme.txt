@@ -25,7 +25,7 @@ Finally, this plugin offers a unique feature that will delight blog owners with 
 In bulk :
 
 * 3 integration : inline, ajax, ajax full PHP
-* Data save on custom table (best performance)
+* Data save on custom table (better performance compared to the meta table)
 * Developped with WP_DEBUG to TRUE
 * POO, MVC
 * Commented, i18n

@@ -1,7 +1,26 @@
 <?php
+/**
+ * Helper for get_the_post_views_counter() function, just make an echo
+ * 
+ * @param string $field
+ * @param string $before
+ * @param string $after
+ * @param integer $post_id
+ */
 function the_post_views_counter( $field = 'total', $before = '', $after = '', $post_id = 0 ) {
 	echo get_the_post_views_counter( $field, $before, $after, $post_id );
 }
+
+/**
+ * Template function for get post views counter for a post
+ * 
+ * @global type $post
+ * @param string $field
+ * @param string $before
+ * @param string $after
+ * @param integer $post_id
+ * @return string|boolean
+ */
 function get_the_post_views_counter( $field = 'total', $before = '', $after = '', $post_id = 0 ) {
 	if ( $post_id == 0 ) {
 		global $post;

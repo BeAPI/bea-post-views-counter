@@ -1,7 +1,10 @@
 <?php
-
 class BEA_PVC_Plugin {
-
+	/**
+	 * Callback for plugin activation
+	 * 
+	 * @global WPDB $wpdb
+	 */
 	public static function activate() {
 		global $wpdb;
 
@@ -35,11 +38,19 @@ class BEA_PVC_Plugin {
 		// Default options
 		add_option('bea-pvc-main', array('mode' => 'js-wp', 'include' => 'all', 'exclude' => array(), 'exclude_ips' => '', 'session' => '0'));
 	}
-
+	
+	/**
+	 * Callback for plugin deactivation
+	 */
 	public static function deactivate() {
 		
 	}
-
+	
+	/**
+	 * Helper for get time intervalls with human labels
+	 * 
+	 * @return array
+	 */
 	public static function get_time_intervals() {
 		return array(
 			'day' => __('Current day', 'bea-post-views-counter'),
@@ -54,6 +65,11 @@ class BEA_PVC_Plugin {
 		);
 	}
 
+	/**
+	 * Helper for get allowed time intervalls, developper slug (for WP_Query)
+	 * 
+	 * @return array
+	 */
 	public static function get_allowed_time_intervals() {
 		return array(
 			'day' => 'day_counter',
@@ -69,14 +85,25 @@ class BEA_PVC_Plugin {
 		);
 	}
 
+	/**
+	 * Helper for check if an interval is allowed value or not, return boolean
+	 * 
+	 * @param string $value
+	 * @return boolean
+	 */
 	public static function _is_allowed_interval($value) {
 		$intervals = self::get_allowed_time_intervals();
 		return ( isset($intervals[$value]) ) ? true : false;
 	}
 
+	/**
+	 * Helper for check if an interval is allowed value or not, return "total" default value
+	 * 
+	 * @param string $value
+	 * @return string
+	 */
 	public static function _get_db_interval($value) {
 		$intervals = self::get_allowed_time_intervals();
 		return ( isset($intervals[$value]) ) ? $intervals[$value] : 'total';
 	}
-
 }

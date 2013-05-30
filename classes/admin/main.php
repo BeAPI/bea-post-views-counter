@@ -1,10 +1,12 @@
 <?php
 class BEA_PVC_Admin_Main {
-
+	/**
+	 * Register hooks
+	 */
 	public function __construct() {
+		// Counter on admin post listing
 		add_filter( 'manage_pages_columns', array( __CLASS__, 'manage_items_columns' ) );
 		add_filter( 'manage_posts_columns', array( __CLASS__, 'manage_items_columns' ) );
-
 		add_action( 'manage_pages_custom_column', array( __CLASS__, 'manage_items_custom_column' ), 10, 2 );
 		add_action( 'manage_posts_custom_column', array( __CLASS__, 'manage_items_custom_column' ), 10, 2 );
 		
@@ -12,17 +14,32 @@ class BEA_PVC_Admin_Main {
 		
 	}
 
+	/**
+	 * Add a column "counter"
+	 * 
+	 * @param array $posts_columns
+	 * @return array
+	 */
 	public static function manage_items_columns( $posts_columns ) {
 		$posts_columns['bea-pvc'] = __( 'Counter' );
 		return $posts_columns;
 	}
 
+	/**
+	 * Display counter value for each line
+	 * 
+	 * @param string $column_name
+	 * @param integer $post_id
+	 */
 	public static function manage_items_custom_column( $column_name, $post_id ) {
 		if ( $column_name == 'bea-pvc' ) {
 			the_post_views_counter( 'total', '', __( ' views', 'bea-post-views-counter' ), $post_id );
 		}
 	}
 	
+	/**
+	 * Check for admin action "importation"
+	 */
 	public static function admin_init() {
 		if ( isset($_POST['bea-pvc-import-others-plugins']) ) {
 			check_admin_referer('bea-pvc-import');
@@ -39,6 +56,12 @@ class BEA_PVC_Admin_Main {
 		}
 	}
 	
+	/**
+	 * Import from WP Post Views plugin
+	 * 
+	 * @global WPDB $wpdb
+	 * @return int items quantity imported
+	 */
 	public static function import_wp_post_views() {
 		global $wpdb;
 		
@@ -64,6 +87,11 @@ class BEA_PVC_Admin_Main {
 		return $counter;
 	}
 	
+	/**
+	 * Import from BAW Post Views Counter
+	 * 
+	 * @return int
+	 */
 	public static function import_baw_post_views_counter() {
 		// TODO
 		return 0;

@@ -62,7 +62,7 @@ function _bea_pb_load_files($dir, $files, $prefix = '') {
 _bea_pb_load_files(BEA_PVC_DIR . 'functions/', array('api', 'template'));
 
 // Plugin client classes
-_bea_pb_load_files(BEA_PVC_DIR . 'classes/', array('main', 'plugin', 'widget', 'counter', 'query'));
+_bea_pb_load_files(BEA_PVC_DIR . 'classes/', array('main', 'plugin', 'widget', 'shortcode', 'counter', 'query'));
 
 // Plugin admin classes
 if (is_admin()) {
@@ -94,6 +94,7 @@ function init_bea_pvc_plugin() {
 	// Client
 	new BEA_PVC_Main();
 	new BEA_PVC_Query();
+	new BEA_PVC_Shortcode();
 
 	// Admin
 	if (is_admin()) {

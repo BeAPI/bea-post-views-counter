@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class for counter object, make abstraction for DB request, allow full PHP implementation with child
  */
@@ -11,6 +10,12 @@ class BEA_PVC_Counter {
 	protected $_current_time = 0;
 	public $increment_sequence = 1;
 
+	/**
+	 * Constructor, optionnally autofill or not data for current counter
+	 * 
+	 * @param integer $post_id
+	 * @param boolean $auto_fill
+	 */
 	public function __construct($post_id = 0, $auto_fill = true) {
 		$post_id = (int) $post_id;
 		if ($post_id > 0) {
@@ -22,11 +27,19 @@ class BEA_PVC_Counter {
 			}
 		}
 	}
-
+	
+	/**
+	 * Check if counter exist or not. ID is valid ?
+	 * @return boolean
+	 */
 	public function exists() {
 		return ( $this->_id > 0 ) ? true : false;
 	}
-
+	
+	/**
+	 * SQL helper for get time diff between DB values and current time
+	 * @return string
+	 */
 	protected function _get_sql_fields() {
 		$sql_fields = "";
 		$sql_fields .= " (TIMESTAMPDIFF(DAY, day_date, NOW())) AS day_date_diff, "; // Day
@@ -35,7 +48,10 @@ class BEA_PVC_Counter {
 		$sql_fields .= " (TIMESTAMPDIFF(YEAR, year_date, NOW())) AS year_date_diff "; // Year
 		return $sql_fields;
 	}
-
+	
+	/**
+	 * Try to load data from custom table
+	 */
 	protected function _fill_data() {
 		$this->_data = $this->_get_row(sprintf("SELECT *, %s FROM %s WHERE post_id = %d", $this->_get_sql_fields(), $this->_get_table_name(), $this->_id));
 		if ($this->_data == false) {
@@ -47,6 +63,9 @@ class BEA_PVC_Counter {
 		}
 	}
 	
+	/**
+	 * If row not exist on DB, set default values
+	 */
 	public function load_default_data() {
 		// Default values
 		$this->_data = array(
@@ -71,6 +90,7 @@ class BEA_PVC_Counter {
 	}
 
 	/**
+	 * Delete counter from custom table
 	 * Only for WP method, used WPDB
 	 * 
 	 * @global type $wpdb
@@ -86,6 +106,12 @@ class BEA_PVC_Counter {
 		return $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->post_views_counter WHERE post_id = %d", $this->_id));
 	}
 
+	/**
+	 * Magic method for increment a counter. This first arg allow to skip settings contrainst.
+	 * 
+	 * @param boolean $force
+	 * @return boolean
+	 */
 	public function increment( $force = false ) {
 		if (!$this->exists()) {
 			return false;
@@ -104,7 +130,11 @@ class BEA_PVC_Counter {
 		$this->commit();
 		return true;
 	}
-
+	
+	/**
+	 * Increment day counter
+	 * @return boolean
+	 */
 	public function increment_day() {
 		if (!$this->exists()) {
 			return false;
@@ -120,6 +150,10 @@ class BEA_PVC_Counter {
 		return true;
 	}
 
+	/**
+	 * Increment week counter
+	 * @return boolean
+	 */
 	public function increment_week() {
 		if (!$this->exists()) {
 			return false;
@@ -135,6 +169,10 @@ class BEA_PVC_Counter {
 		return true;
 	}
 
+	/**
+	 * Increment month counter
+	 * @return boolean
+	 */
 	public function increment_month() {
 		if (!$this->exists()) {
 			return false;
@@ -149,7 +187,11 @@ class BEA_PVC_Counter {
 		$this->_data['month_counter'] += $this->increment_sequence;
 		return true;
 	}
-
+	
+	/**
+	 * Increment year counter
+	 * @return boolean
+	 */
 	public function increment_year() {
 		if (!$this->exists()) {
 			return false;
@@ -164,7 +206,11 @@ class BEA_PVC_Counter {
 		$this->_data['year_counter'] += $this->increment_sequence;
 		return true;
 	}
-
+	
+	/**
+	 * Increment all time counter
+	 * @return boolean
+	 */
 	public function increment_total() {
 		if (!$this->exists()) {
 			return false;
@@ -174,6 +220,10 @@ class BEA_PVC_Counter {
 		return true;
 	}
 
+	/**
+	 * Save counter on DB, merge (insert or update)
+	 * @return boolean
+	 */
 	public function commit() {
 		if (!$this->exists()) {
 			return false;
@@ -189,31 +239,63 @@ class BEA_PVC_Counter {
 			return $this->_update($this->_get_table_name(), $this->_data, array('post_id' => $this->_id));
 		}
 	}
-
-	protected static function _filter_diff($value) {
-		return !in_array($value, array('day_date_diff'));
-	}
-
+	
+	/**
+	 * Method for get name of custom table, overridable
+	 * 
+	 * @global WPDB $wpdb
+	 * @return string
+	 */
 	protected function _get_table_name() {
 		global $wpdb;
 		return $wpdb->post_views_counter;
 	}
-
+	
+	/**
+	 * WPDB->get_row() alias, overridable
+	 * 
+	 * @global WPDB $wpdb
+	 * @param string $query
+	 * @return stdclass
+	 */
 	protected function _get_row($query = "") {
 		global $wpdb;
 		return $wpdb->get_row($query, ARRAY_A);
 	}
-
+	
+	/**
+	 * WPDB->insert() alias, overridable
+	 * 
+	 * @global WPDB $wpdb
+	 * @param string $table_name
+	 * @param array $values
+	 * @return integer
+	 */
 	protected function _insert($table_name = '', $values = array()) {
 		global $wpdb;
 		return $wpdb->insert($table_name, $values);
 	}
 
+	/**
+	 * WPDB->update() alias, overridable
+	 * 
+	 * @global WPDB $wpdb
+	 * @param string $table_name
+	 * @param array $values
+	 * @param array $where
+	 * @return integer
+	 */
 	protected function _update($table_name = '', $values = array(), $where = array()) {
 		global $wpdb;
 		return $wpdb->update($table_name, $values, $where);
 	}
-
+	
+	/**
+	 * Helper for format date, pass format and mysql datetime
+	 * @param string $format
+	 * @param string $date
+	 * @return string
+	 */
 	protected function _format_date($format = '', $date = '') {
 		$timestamp = strtotime($date);
 		if ($timestamp == 0) {
@@ -222,7 +304,15 @@ class BEA_PVC_Counter {
 
 		return date($format, $timestamp);
 	}
-
+	
+	/**
+	 * Helper for compare 2 dates for specific format
+	 * 
+	 * @param string $format
+	 * @param datetime $date1
+	 * @param datetime $date2
+	 * @return boolean
+	 */
 	protected function _is_same_date($format = '', $date1 = false, $date2 = false) {
 		// Date1 is required
 		if ($date1 == false) {
@@ -240,11 +330,22 @@ class BEA_PVC_Counter {
 
 		return false;
 	}
-
+	
+	/**
+	 * Public method for get all data array
+	 * 
+	 * @return array
+	 */
 	public function get_data() {
 		return $this->_data;
 	}
-
+	
+	/**
+	 * Public method for get one data field
+	 * 
+	 * @param string $field
+	 * @return string
+	 */
 	public function get_data_value($field) {
 		if (isset($this->_data[$field])) {
 			return $this->_data[$field];
@@ -253,11 +354,25 @@ class BEA_PVC_Counter {
 		return '';
 	}
 	
+	/**
+	 * Public method for set all data array
+	 * 
+	 * @param type $data
+	 * @return boolean
+	 */
 	public function set_data( $data = array() ) {
 		$this->_data = $data;
+		return true;
 	}
 	
-	public function set_data_value($field = '', $value = '') {
+	/**
+	 * Public method for set one data field
+	 * 
+	 * @param string $field
+	 * @param mixed $value
+	 * @return boolean
+	 */
+	public function set_data_value( $field = '', $value = null ) {
 		if (isset($this->_data[$field])) {
 			$this->_data[$field] = $value;
 			return true;
@@ -265,11 +380,22 @@ class BEA_PVC_Counter {
 
 		return false;
 	}
-
+	
+	/**
+	 * Public method to get current post id counter
+	 * 
+	 * @return integer|false
+	 */
 	public function get_post_id() {
 		return $this->_id;
 	}
-
+	
+	/**
+	 * Magic method for check if current user is allowed or not to increment counter
+	 * Check current mode, bots, logged user, IP exclusion and session
+	 * 
+	 * @return boolean
+	 */
 	public function is_allowed_to_increment() {
 		$current_options = $this->get_option('bea-pvc-main');
 		if ( $current_options == false ) { // No option ? Allow everyone !
@@ -340,6 +466,12 @@ class BEA_PVC_Counter {
 		return true;
 	}
 	
+	/**
+	 * Clone get_option(), overridable
+	 * 
+	 * @param string $option_name
+	 * @return string
+	 */
 	protected function get_option( $option_name = '' ) {
 		return get_option( $option_name );
 	}
@@ -368,8 +500,15 @@ class BEA_PVC_Counter {
 
 		return $ipaddress;
 	}
-
+	
+	/**
+	 * Check if current user is a robot or not
+	 * 
+	 * @return boolean
+	 */
 	protected function is_robots() {
+		$_SERVER['HTTP_USER_AGENT'] = ( !isset($_SERVER['HTTP_USER_AGENT']) ) ? '' : $_SERVER['HTTP_USER_AGENT'];
+		
 		$bots = array('Google Bot' => 'googlebot', 'Google Bot' => 'google', 'MSN' => 'msnbot', 'Alex' => 'ia_archiver', 'Lycos' => 'lycos', 'Ask Jeeves' => 'jeeves', 'Altavista' => 'scooter', 'AllTheWeb' => 'fast-webcrawler', 'Inktomi' => 'slurp@inktomi', 'Turnitin.com' => 'turnitinbot', 'Technorati' => 'technorati', 'Yahoo' => 'yahoo', 'Findexa' => 'findexa', 'NextLinks' => 'findlinks', 'Gais' => 'gaisbo', 'WiseNut' => 'zyborg', 'WhoisSource' => 'surveybot', 'Bloglines' => 'bloglines', 'BlogSearch' => 'blogsearch', 'PubSub' => 'pubsub', 'Syndic8' => 'syndic8', 'RadioUserland' => 'userland', 'Gigabot' => 'gigabot', 'Become.com' => 'become.com');
 		foreach ($bots as $bot) {
 			if (stristr($_SERVER['HTTP_USER_AGENT'], $bot) !== false) {

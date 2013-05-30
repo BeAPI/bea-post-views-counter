@@ -1,16 +1,14 @@
 <?php
 
 class BEA_PVC_Admin_Settings {
-
 	static $settings_api;
 	static $id = 'bea-pvc-main';
 
 	/**
-	 * __construct
+	 * Register hooks
 	 * 
 	 * @access public
 	 *
-	 * @return mixed Value.
 	 */
 	public function __construct() {
 		self::$settings_api = new WeDevs_Settings_API();
@@ -20,38 +18,30 @@ class BEA_PVC_Admin_Settings {
 	}
 
 	/**
-	 * admin_menu
-	 * 
-	 * @param mixed $hook Description.
+	 * Register page on WP admin
 	 *
 	 * @access public
 	 * @static
-	 *
-	 * @return mixed Value.
 	 */
 	public static function admin_menu() {
 		add_options_page(__('BEA Post Views Counter', 'bea-post-views-counter'), __('Post Views Counter', 'bea-post-views-counter'), 'manage_options', 'bea-pvc-settings', array(__CLASS__, 'render_page_settings'));
 	}
 
 	/**
-	 * render_page_settings
+	 * Include settings view (MVC)
 	 * 
 	 * @access public
 	 * @static
-	 *
-	 * @return mixed Value.
 	 */
 	public static function render_page_settings() {
 		include (BEA_PVC_DIR . 'views/admin/page-settings.php');
 	}
 
 	/**
-	 * admin_init
+	 * Declare sections, fields used WeDevs_Settings_API class
 	 * 
 	 * @access public
 	 * @static
-	 *
-	 * @return mixed Value.
 	 */
 	public static function admin_init() {
 		//set the settings
@@ -62,6 +52,11 @@ class BEA_PVC_Admin_Settings {
 		self::$settings_api->admin_init();
 	}
 
+	/**
+	 * Declaration of all settings sections
+	 * 
+	 * @return array
+	 */
 	public static function get_settings_sections() {
 		$sections = array(
 			array(
@@ -75,7 +70,7 @@ class BEA_PVC_Admin_Settings {
 	}
 
 	/**
-	 * Returns all the settings fields
+	 * Declaration of all the settings fields
 	 *
 	 * @return array settings fields
 	 */

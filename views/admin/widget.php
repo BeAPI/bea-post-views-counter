@@ -27,7 +27,7 @@ if ( !defined('ABSPATH') )
 	<label for="<?php echo $this->get_field_id( 'orderby' ); ?>"><?php _e("Order on which field ?", 'bea-post-views-counter'); ?></label>
 	<select id="<?php echo $this->get_field_id( 'orderby' ); ?>" name="<?php echo $this->get_field_name( 'orderby' ); ?>" class="widefat">
 		<?php
-		foreach( $this->get_orderby_fields() as $optval => $option ) {
+		foreach( self::get_orderby_fields() as $optval => $option ) {
 			echo '<option '.selected( $instance['orderby'], $optval, false ).' value="'.esc_attr($optval).'">'.esc_html($option).'</option>';
 		}
 		?>
