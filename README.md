@@ -23,7 +23,8 @@ You can choose to include or not connected visitors, site administrators, exclud
 Finally, this plugin offers a unique feature that will delight blog owners with a lot of traffic, it is possible to have a visitor counter, asynchronous ajax, but is exclusively developed in PHP. This mode does not require any installation on your modifiction and is 10 times more efficient than the traditional version of AJAX.
 
 In bulk :
-*** 3 integration :** inline, ajax, ajax full php  
+
+* 3 integration : inline, ajax, ajax full php  
 * Data save on custom table (best performance)
 * Developped with WP_DEBUG to TRUE
 * POO, MVC
@@ -46,13 +47,13 @@ No, this plugin written with poetry, no ads, no viruses, no spyware.
 ## Screenshots ##
 
 ###1. Plugin settings###
-![Plugin settings](http://s.wordpress.org/extend/plugins/ea-post-views-counter/screenshot-1.png)
+![Plugin settings](http://s.wordpress.org/extend/plugins/bea-post-views-counter/screenshot-1.png)
 
 ###2. Shortcode###
-![Shortcode](http://s.wordpress.org/extend/plugins/ea-post-views-counter/screenshot-2.png)
+![Shortcode](http://s.wordpress.org/extend/plugins/bea-post-views-counter/screenshot-2.png)
 
 ###3. Widget###
-![Widget](http://s.wordpress.org/extend/plugins/ea-post-views-counter/screenshot-3.png)
+![Widget](http://s.wordpress.org/extend/plugins/bea-post-views-counter/screenshot-3.png)
 
 
 ## Changelog ##

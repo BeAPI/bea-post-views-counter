@@ -23,7 +23,8 @@ You can choose to include or not connected visitors, site administrators, exclud
 Finally, this plugin offers a unique feature that will delight blog owners with a lot of traffic, it is possible to have a visitor counter, asynchronous ajax, but is exclusively developed in PHP. This mode does not require any installation on your modifiction and is 10 times more efficient than the traditional version of AJAX.
 
 In bulk :
-* 3 integration : inline, ajax, ajax full php
+
+* 3 integration : inline, ajax, ajax full PHP
 * Data save on custom table (best performance)
 * Developped with WP_DEBUG to TRUE
 * POO, MVC
