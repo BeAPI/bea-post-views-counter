@@ -87,9 +87,6 @@ function init_bea_pvc_plugin() {
 			session_start();
 		}
 	}
-			
-	// Load translations
-	load_plugin_textdomain('bea-post-views-counter', false, basename(BEA_PVC_DIR) . '/languages');
 
 	// Client
 	new BEA_PVC_Main();

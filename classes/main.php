@@ -4,6 +4,9 @@ class BEA_PVC_Main {
 	 * Register hooks
 	 */
 	public function __construct() {
+		// Load translation
+		add_action('init', array(__CLASS__, 'init'));
+		
 		// Ajax count request
 		add_action('wp_ajax_'.'bea-pvc-counter', array(__CLASS__, 'wp_ajax_callback'));
 		add_action('wp_ajax_nopriv_'.'bea-pvc-counter', array(__CLASS__, 'wp_ajax_callback'));
@@ -13,6 +16,13 @@ class BEA_PVC_Main {
 		
 		// Delete row on custom when delete post
 		add_action('deleted_post', array(__CLASS__, 'deleted_post'));
+	}
+	
+	/**
+	 * Load transation
+	 */
+	public static function init() {			
+		load_plugin_textdomain('bea-post-views-counter', false, basename(BEA_PVC_DIR) . '/languages');
 	}
 	
 	/**
