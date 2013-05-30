@@ -1,4 +1,4 @@
-=== EA Post Views Counter ===
+=== BEA Post Views Counter ===
 Contributors: momo360modena
 Donate link: http://beapi.fr/donate/
 Tags: counter, hits, postviews, views, count, popular, popular post, stats, view, views, widget
