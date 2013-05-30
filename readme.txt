@@ -1,4 +1,4 @@
-=== BEA Post Views Counter ===
+=== EA Post Views Counter ===
 Contributors: momo360modena
 Donate link: http://beapi.fr/donate/
 Tags: counter, hits, postviews, views, count, popular, popular post, stats, view, views, widget
@@ -14,30 +14,42 @@ Enables you to display how many times a post, page and any post type had been vi
 
 Counters are available at several intervals, current day, day -1, current week, week -1, current month, -1 month, current year, year -1 and total off course!
 
+This plugin offers various features like a widget that lists the most popular content, a shortcode display counters.
+
+You can sort the content by popularity with the class WP_Query and query_posts function on the time interval of your choice.
+
+You can choose to include or not connected visitors, site administrators, excluding robots and why not ban an IP address.
+
+Finally, this plugin offers a unique feature that will delight blog owners with a lot of traffic, it is possible to have a visitor counter, asynchronous ajax, but is exclusively developed in PHP. This mode does not require any installation on your modifiction and is 10 times more efficient than the traditional version of AJAX.
+
+In bulk :
+* 3 integration : inline, ajax, ajax full php
+* Data save on custom table (best performance)
+* Developped with WP_DEBUG to TRUE
+* POO, MVC
+* Commented, i18n
+* Import data from WP-PostViews / BAW Post View Counter
+
+Plugin written with poetry, no ads, no viruses, no spyware.
+
 == Installation ==
 
-1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+1. Upload `bea-post-views-counter` folder to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently asked questions ==
 
-= A question that someone might have =
+= Are what plugin pollutes the WordPress interface with ads and donation links ? =
 
-An answer to that question.
+No, this plugin written with poetry, no ads, no viruses, no spyware.
 
 == Screenshots ==
 
-1. 
-2. 
+1. Plugin settings
+2. Shortcode
+2. Widget
 
 == Changelog ==
 
-
-
-== Upgrade notice ==
-
-
-
-== Arbitrary section 1 ==
-
+* Version 0.3 
+ * First public version
