@@ -1,7 +1,7 @@
 <?php
 /*
  Plugin Name: BEA Post Views Counter
- Version: 0.3
+ Version: 0.4
  Plugin URI: https://github.com/herewithme/bea-post-views-counter
  Description: Counts views for any post type. Compatible with static cache plugins, and also full PHP implementation
  Author: Amaury Balmer
@@ -11,8 +11,8 @@
  Text Domain: bea-post-views-counter
 
  TODO:
-	Shortcode
 	Import from Post view counter
+	Append total counter at the end of post
 
  ----
 

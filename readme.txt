@@ -38,6 +38,30 @@ Plugin written with poetry, no ads, no viruses, no spyware.
 1. Upload `bea-post-views-counter` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
+== Usage ==
+
+=== Functions ===
+
+the_post_views_counter()
+
+Display the post view counter
+
+get_the_post_views_counter()
+
+Return the post view counter (string)
+
+
+=== Shortcode ===
+
+[counter]
+This content has been viewed 54 times in total
+
+[counter time="month" after=" times in current month"]
+This content has been viewed 54 times in current month
+
+[counter time="day" after=" times in current day"]
+This content has been viewed 6 times in current day
+
 == Frequently asked questions ==
 
 = Are what plugin pollutes the WordPress interface with ads and donation links ? =

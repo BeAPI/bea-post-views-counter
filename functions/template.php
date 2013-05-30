@@ -30,7 +30,9 @@ function get_the_post_views_counter( $field = 'total', $before = '', $after = ''
 	if ( $post_id == 0 ) {
 		return false;
 	}
+	
+	$field = BEA_PVC_Plugin::_get_db_interval( $field );
 
 	$counter = new BEA_PVC_Counter( $post_id );
-	return $before . $counter->get_data_value( $field ) . $after;
+	return $before . (int) $counter->get_data_value( $field ) . $after;
 }

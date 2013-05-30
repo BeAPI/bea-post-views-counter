@@ -4,7 +4,7 @@ class BEA_PVC_Shortcode {
 	 * Register hooks
 	 */
 	public function __construct() {
-		foreach( array('post_view', 'bea-counter', 'post_counter') as $shortcode_name ) {
+		foreach( array('post_view', 'counter', 'post_counter') as $shortcode_name ) {
 			add_shortcode( $shortcode_name, array(__CLASS__, 'shortcode') );
 		}
 	}
