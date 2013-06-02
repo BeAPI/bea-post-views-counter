@@ -68,6 +68,22 @@ This content has been viewed 6 times in current day
 
 No, this plugin written with poetry, no ads, no viruses, no spyware.
 
+= Why this plugin create a custom table ? =
+
+This was not an easy decision.
+
+On one side, you can enjoy the meta API, it retains the basic scheme. That's less code to maintain, but many more lines in BDD.
+
+For each content, 1 line with custom table or 10 lines with the meta table.
+This last is already solicited by countless plugins ca seems to me a better solution to choose to create a table.
+
+= Are it is possible to have more detailed stats ? or by day ? =
+
+No, this is a plug-in counters views. Not a plugin web statistics. 
+If you need more stats, and many take a dedicated tool like Piwik (open-source) or Google Analytics/WordPress.com (hosted).
+
+If your site does not generate too much traffic, you can also a WordPress plugin ... like WP SlimStat
+
 == Screenshots ==
 
 1. Plugin settings
