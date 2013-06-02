@@ -34,9 +34,24 @@ class stopwpbootstrap_filter extends php_user_filter {
 // preventing the full WP stack from bootstrapping
 stream_filter_register( "stopwpbootstrap", "stopwpbootstrap_filter" );
 
+// Detect wp-config location
+$wp_location = dirname(__FILE__) . '/../../../../';
+if ( file_exists( $wp_location . 'wp-config.php') ) {
+	$wp_location .= 'wp-config.php';
+} elseif ( file_exists( dirname($wp_location) . '/wp-config.php' ) && ! file_exists( dirname($wp_location) . '/wp-settings.php' ) ) {
+	$wp_location = dirname($wp_location) . '/wp-config.php';
+} else { // Config file not exist, stop script
+	die('-9');
+}
+
 // by reading this file via the php filter protocol,
 // we can safely include wp-config.php in our function scope now 
-include("php://filter/read=stopwpbootstrap/resource=" . dirname( __FILE__ ) . '/../../../../wp-config.php');
+include("php://filter/read=stopwpbootstrap/resource=" . $wp_location);
+
+// Constant are defined ?
+if ( !defined('DB_NAME') ) {
+	die('-8');
+}
 
 // Timezone
 date_default_timezone_set( 'UTC' );
@@ -44,8 +59,12 @@ date_default_timezone_set( 'UTC' );
 // Load PHP MySQL Lib
 require( dirname( __FILE__ ) . '/../librairies/php-mysql-class-master/class.MySQL.php' );
 
-// Load counter class for next extend
+// Load counter class for extend it
 require( dirname( __FILE__ ) . '/../classes/counter.php' );
+
+/**
+ * Pure PHP class
+ */
 class BEA_PVC_Counter_Full_PHP extends BEA_PVC_Counter {
 
 	protected $_db = null;
@@ -117,4 +136,5 @@ if ( isset( $_GET['post_id'] ) && (int) $_GET['post_id'] > 0 && isset( $_GET['bl
 	
 	die( ($result == true) ? '1' : '-1' );
 }
-die( '0' );
+
+die( '0' ); // Invalid call
