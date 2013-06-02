@@ -1,4 +1,12 @@
 <?php
+/**
+ * This script will increment the counter without loading the core of WordPress, 
+ * It allows gains performance due to the memory/CPU usage of WordPress.
+ * 
+ * This script try to load only the wp-config.php file of WP to retrieve MySQL crendentials.
+ */
+
+// Enable or not debug mode, with error message
 $debug = 0;
 if ( $debug == 1 ) {
 	error_reporting( E_ALL );
