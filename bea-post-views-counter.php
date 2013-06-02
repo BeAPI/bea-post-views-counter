@@ -43,7 +43,7 @@ $wpdb->tables[]   = 'post_views_counter';
 $wpdb->post_views_counter = $wpdb->prefix . 'post_views_counter';
 
 // Plugin constants
-define('BEA_PVC_VERSION', '0.3');
+define('BEA_PVC_VERSION', '0.4');
 
 // Plugin URL and PATH
 define('BEA_PVC_URL', plugin_dir_url ( __FILE__ ));

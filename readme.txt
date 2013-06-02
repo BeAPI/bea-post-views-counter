@@ -76,5 +76,7 @@ No, this plugin written with poetry, no ads, no viruses, no spyware.
 
 == Changelog ==
 
+* Version 0.4
+	* Minor changes on pure PHP counter
 * Version 0.3 
- * First public version
+	* First public version
