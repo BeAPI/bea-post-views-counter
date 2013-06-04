@@ -43,13 +43,14 @@ class stopwpbootstrap_filter extends php_user_filter {
 stream_filter_register( "stopwpbootstrap", "stopwpbootstrap_filter" );
 
 // Detect wp-config location
-$wp_location = dirname(__FILE__) . '/../../../../';
-if ( file_exists( $wp_location . 'wp-config.php') ) {
-	$wp_location .= 'wp-config.php';
-} elseif ( file_exists( dirname($wp_location) . '/wp-config.php' ) && ! file_exists( dirname($wp_location) . '/wp-settings.php' ) ) {
-	$wp_location = dirname($wp_location) . '/wp-config.php';
-} else { // Config file not exist, stop script
-	die('-9');
+// Inspiration : http://boiteaweb.fr/wordpress-bootstraps-ou-comment-bien-charger-wordpress-6717.html
+$wp_location = 'wp-config.php';
+while( !is_file( $wp_location ) ) {
+	if( is_dir( '..' ) ) {
+		chdir( '..' );
+	} else {
+		die('-9'); // Config file not exist, stop script
+	}
 }
 
 // by reading this file via the php filter protocol,
