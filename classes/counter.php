@@ -452,7 +452,7 @@ class BEA_PVC_Counter {
 			}
 			
 			// Default val
-			$_SESSION['bea_pvc_post_ids'] = ( !isset($_SESSION['bea_pvc_post_ids']) || !is_array($_SESSION['bea_pvc_post_ids']) ) ? array() : $_SESSION['post_ids'];
+			$_SESSION['bea_pvc_post_ids'] = ( !isset($_SESSION['bea_pvc_post_ids']) || !is_array($_SESSION['bea_pvc_post_ids']) ) ? array() : $_SESSION['bea_pvc_post_ids'];
 			
 			// Already view ?
 			if ( in_array($this->_id, $_SESSION['bea_pvc_post_ids']) ) {
