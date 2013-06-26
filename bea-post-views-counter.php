@@ -82,7 +82,7 @@ add_action('plugins_loaded', 'init_bea_pvc_plugin');
 function init_bea_pvc_plugin() {
 	// Init session
 	$current_options = get_option('bea-pvc-main');
-	if ( isset($current_options['session']) && isset($current_options['session']) == 'on' ) {
+	if ( isset($current_options['session']) && $current_options['session'] == 'on' ) {
 		if (!isset($_SESSION)) {
 			session_start();
 		}
