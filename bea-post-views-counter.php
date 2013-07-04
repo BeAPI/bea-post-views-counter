@@ -9,6 +9,7 @@
  Domain Path: languages
  Network: false
  Text Domain: bea-post-views-counter
+ Provides: bea-post-views-counter
 
  TODO:
 	Import from Post view counter
