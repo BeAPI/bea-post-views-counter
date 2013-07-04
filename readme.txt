@@ -4,7 +4,7 @@ Donate link: http://beapi.fr/donate/
 Tags: counter, hits, postviews, views, count, popular, popular post, stats, view, views, widget
 Requires at least: 3.1
 Tested up to: 3.5.1
-Stable tag: 0.3
+Stable tag: 0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,7 @@ Finally, this plugin offers a unique feature that will delight blog owners with 
 
 In bulk :
 
-* 3 integration : inline, ajax, ajax full PHP
+* 3 integration : inline, ajax, ajax full PHP (into an addon)
 * Data save on custom table (better performance compared to the meta table)
 * Developped with WP_DEBUG to TRUE
 * POO, MVC
@@ -92,6 +92,8 @@ If your site does not generate too much traffic, you can also a WordPress plugin
 
 == Changelog ==
 
+* Version 0.5
+	* Move full PHP implementation into an addon (https://github.com/herewithme/bea-post-views-counter-fullphp-addon)
 * Version 0.4
 	* Minor changes on pure PHP counter
 * Version 0.3 

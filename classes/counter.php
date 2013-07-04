@@ -1,6 +1,6 @@
 <?php
 /**
- * Class for counter object, make abstraction for DB request, allow full PHP implementation with child
+ * Class for counter object, make abstraction for DB request, allow full PHP implementation addon with extend class
  */
 class BEA_PVC_Counter {
 

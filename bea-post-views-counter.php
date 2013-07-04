@@ -3,7 +3,7 @@
  Plugin Name: BEA Post Views Counter
  Version: 0.4
  Plugin URI: https://github.com/herewithme/bea-post-views-counter
- Description: Counts views for any post type. Compatible with static cache plugins, and also full PHP implementation
+ Description: Counts views for any post type. Compatible with static cache plugins, with an asynchrone AJAX implementation.
  Author: Amaury Balmer
  Author URI: http://www.beapi.fr
  Domain Path: languages
