@@ -4,8 +4,8 @@ class BEA_PVC_Query {
 	 * Register hooks
 	 */
 	public function __construct() {
+		add_filter( 'query_vars', array( __CLASS__, 'query_vars' ), 10, 1 );
 		add_filter( 'pre_get_posts', array( __CLASS__, 'pre_get_posts' ), 15, 1 );
-		add_action( 'parse_query', array( __CLASS__, 'parse_query' ), 10, 1 );
 		add_filter( 'posts_join', array( __CLASS__, 'posts_join' ), 10, 2 );
 		add_filter( 'posts_orderby', array( __CLASS__, 'posts_orderby' ), 10, 2 );
 	}
