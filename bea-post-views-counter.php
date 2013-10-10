@@ -1,7 +1,7 @@
 <?php
 /*
  Plugin Name: BEA Post Views Counter
- Version: 0.4
+ Version: 0.5.1
  Plugin URI: https://github.com/herewithme/bea-post-views-counter
  Description: Counts views for any post type. Compatible with static cache plugins, with an asynchrone AJAX implementation.
  Author: Amaury Balmer
@@ -44,7 +44,7 @@ $wpdb->tables[]   = 'post_views_counter';
 $wpdb->post_views_counter = $wpdb->prefix . 'post_views_counter';
 
 // Plugin constants
-define('BEA_PVC_VERSION', '0.4');
+define('BEA_PVC_VERSION', '0.5.1');
 
 // Plugin URL and PATH
 define('BEA_PVC_URL', plugin_dir_url ( __FILE__ ));

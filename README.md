@@ -4,7 +4,7 @@
 **Tags:** counter, hits, postviews, views, count, popular, popular post, stats, view, views, widget  
 **Requires at least:** 3.1  
 **Tested up to:** 3.5.1  
-**Stable tag:** 0.5  
+**Stable tag:** 0.5.1
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -58,6 +58,8 @@ No, this plugin written with poetry, no ads, no viruses, no spyware.
 
 ## Changelog ##
 
+* Version 0.5.1
+	* Change hook parse_query for pre_get_posts. More compatible.
 * Version 0.5
 	* Move full PHP implementation into an addon (https://github.com/herewithme/bea-post-views-counter-fullphp-addon)
 * Version 0.4
