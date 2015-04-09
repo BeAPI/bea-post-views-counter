@@ -32,7 +32,9 @@ class BEA_PVC_Main {
 		if ( isset($_GET['post_id']) && (int) $_GET['post_id'] > 0 ) {
 			$counter = new BEA_PVC_Counter($_GET['post_id']);
 			$result = $counter->increment();
-	
+			
+			@header( 'Content-Type:  text/javascript' );
+			
 			die( ($result == true) ? '1' : '-1' );
 		}
 	}
