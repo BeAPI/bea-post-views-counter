@@ -120,11 +120,11 @@ class BEA_PVC_Admin_Settings {
 				),
 				array(
                     'name' => 'session',
-                    'label' => __( 'Session', 'mpt' ),
-                    'options' => __( 'Increment only once counter per user session?', 'mpt' ),
+                    'label' => __( 'Session', 'bea-post-views-counter' ),
+                    'options' => __( 'Increment only once counter per user session?', 'bea-post-views-counter' ),
                     'type' => 'checkbox',
                     'default' => 0,
-                    'desc' => __('This setting prevents manipulation counters views. It allows only one counter increments during a browsing session of the user. This feature uses the PHP SESSION, to avoid technical limitations of cookies. Finally, it reduces the performance of your server if your site generates a lot of traffic!', 'mpt' )
+                    'desc' => __('This setting prevents manipulation counters views. It allows only one counter increments during a browsing session of the user. This feature uses the PHP SESSION, to avoid technical limitations of cookies. Finally, it reduces the performance of your server if your site generates a lot of traffic!', 'bea-post-views-counter' )
                 ),
 			),
 		);
