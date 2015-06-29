@@ -6,6 +6,9 @@ class BEA_PVC_Plugin {
 	 * @global WPDB $wpdb
 	 */
 	public static function activate() {
+		/**
+		 * @var $wpdb wpdb
+		 */
 		global $wpdb;
 
 		if (!empty($wpdb->charset))

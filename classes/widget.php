@@ -78,7 +78,7 @@ class BEA_PVC_Widget extends WP_Widget {
 	 */
 	public function form($instance) {
 		$defaults = array(
-			'title' => __('Most popular', 'relations-post-types'),
+			'title' => __('Most popular', 'bea-post-views-counter'),
 			'post_type' => 'all',
 			'orderby' => 'views',
 			'views_interval' => 'total',

@@ -21,7 +21,7 @@ class BEA_PVC_Admin_Main {
 	 * @return array
 	 */
 	public static function manage_items_columns( $posts_columns ) {
-		$posts_columns['bea-pvc'] = __( 'Counter' );
+		$posts_columns['bea-pvc'] = __( 'Counter', 'bea-post-views-counter' );
 		return $posts_columns;
 	}
 

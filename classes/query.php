@@ -61,6 +61,9 @@ class BEA_PVC_Query {
 	 * @return string
 	 */
 	public static function posts_orderby( $order_sql = '', $query = null ) {
+		/**
+		 * @var $wpdb wpdb;
+		 */
 		global $wpdb;
 
 		if ( isset( $query->bea_pvc ) && $query->bea_pvc == true ) {

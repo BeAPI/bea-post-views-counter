@@ -21,7 +21,7 @@ class BEA_PVC_Main {
 	/**
 	 * Load transation
 	 */
-	public static function init() {			
+	public static function init() {
 		load_plugin_textdomain('bea-post-views-counter', false, basename(BEA_PVC_DIR) . '/languages');
 	}
 	
@@ -46,6 +46,9 @@ class BEA_PVC_Main {
 	 * @return boolean
 	 */
 	public static function wp_footer() {
+		/**
+		 * @var $wpdb wpdb
+		 */
 		global $wpdb;
 		
 		// Always reset query for have first WP query
@@ -55,29 +58,40 @@ class BEA_PVC_Main {
 		if ( !is_single() && !is_singular() ) {
 			return false;
 		}
-		
+
+		$blog_id = $wpdb->blogid === 0 ? 1 : $wpdb->blogid;
+
 		$current_options = get_option('bea-pvc-main');
 		if ( isset($current_options['mode']) && $current_options['mode'] == 'inline' ) { // Inline counter
 			$counter = new BEA_PVC_Counter( get_queried_object_id() );
 			$counter->increment();
 			return true;
+		} elseif ( isset($current_options['mode']) && $current_options['mode'] == 'js-php' ) { // Pure PHP
+			$url = BEA_PVC_URL . 'tools/counter.php';
 		} else { // Default JS WP
-			$url = admin_url( 'admin-ajax.php?action=bea-pvc-counter&post_id='.  get_queried_object_id(), 'relative' );
+			$url = admin_url( 'admin-ajax.php', 'relative' );
 		}
+
+		// Add the base args
+		$url = add_query_arg( array( 'action' => 'bea-pvc-counter', 'post_id' => get_queried_object_id(), 'blog_id' => $blog_id ), $url );
 
 		// Add plugin hook
 		$url = apply_filters('bea_pvc_counter_url', $url, $current_options);
 		if ( empty($url) ) {
 			return false;
 		}
-		
-		echo "<script type='text/javascript'>";
-		echo "(function() {";
-		echo "var mtime = new Date().getTime(); var bpvc = document.createElement('script'); bpvc.type = 'text/javascript'; bpvc.async = true;";
-		echo "bpvc.src = '{$url}&r='+mtime;";
-		echo "var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(bpvc, s);";
-		echo "})();";
-		echo "</script>";
+
+		/**
+		 * Print the script
+		 */
+		printf( "<script type='text/javascript'>
+		(function() {
+		var mtime = new Date().getTime(); var bpvc = document.createElement('script'); bpvc.type = 'text/javascript'; bpvc.async = true;
+		bpvc.src = '%s&r='+mtime;
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(bpvc, s);
+		})();
+		</script>", $url );
+
 		return true;
 	}
 	

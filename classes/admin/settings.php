@@ -85,8 +85,9 @@ class BEA_PVC_Admin_Settings {
 					'options' => array(
 						'inline' => __('Inline', 'bea-post-views-counter'),
 						'js-wp' => __('JS call with WordPress (default, best compromise)', 'bea-post-views-counter'),
+						'js-php' => __('JS call with pure PHP script (best performance)', 'bea-post-views-counter'),
 					),
-					'desc' => __('Mode <strong>inline</strong> is the simplest, most reliable, but it is not compatible with plugins static cache.<br />The  mode "JS Call" add asynchronous JavaScript code in the footer of your site for compatibilizing the number of views. A 100% PHP implementation is available as an <a href="https://github.com/herewithme/bea-post-views-counter-fullphp-addon">additional plugin</a>, it offers performance 10 times better than the two native modes.', 'bea-post-views-counter'),
+					__( 'Mode <strong>inline</strong> is the simplest, most reliable, but it is not compatible with plugins static cache.<br />The two modes "JS Call" add asynchronous JavaScript code in the footer of your site for compatibilizing the number of views. The difference between <strong>WordPress</strong> and <strong>PHP Pure</strong> is the mechanism used to update the counters in the database. The <strong>pure PHP</strong> mode is on average 10 times more efficient than the WP mode because it does not load WordPress!<br />However, the <strong>pure PHP</strong> mode sometimes have problems operating in some accommodation, this is the reason why this is not the default mode.', 'bea-post-views-counter')
 				),
 				array(
 					'name' => 'include',
