@@ -1,0 +1,273 @@
+# Copyright (C) 2010 {package-name}
+# This file is distributed under the same license as the {package-name} package.
+msgid ""
+msgstr ""
+"Project-Id-Version:  n"
+"Report-Msgid-Bugs-To: wp-polyglots@lists.automattic.comn"
+"POT-Creation-Date: 2015-06-29 11:54:35+00:00n"
+"MIME-Version: 1.0n"
+"Content-Type: text/plain; charset=UTF-8n"
+"Content-Transfer-Encoding: 8bitn"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONEn"
+"Last-Translator: Beapi <human@beapi.fr>n"
+"Language-Team: LANGUAGE <LL@li.org>n"
+
+#: views/admin/widget.php:7 classes/widget.php:103
+msgid "Title"
+msgstr ""
+
+#: views/admin/widget.php:12
+msgid "What to show"
+msgstr ""
+
+#: views/admin/widget.php:14
+msgid "Any"
+msgstr ""
+
+#: views/admin/widget.php:27
+msgid "Order on which field ?"
+msgstr ""
+
+#: views/admin/widget.php:38
+msgid "If you order by views, choose time interval:"
+msgstr ""
+
+#: views/admin/widget.php:49
+msgid "Order by ?"
+msgstr ""
+
+#: views/admin/widget.php:52
+msgid "Ascending"
+msgstr ""
+
+#: views/admin/widget.php:52
+msgid "Descending"
+msgstr ""
+
+#: views/admin/widget.php:60
+msgid "Show counter ?"
+msgstr ""
+
+#: views/admin/widget.php:63
+msgid "Yes"
+msgstr ""
+
+#: views/admin/widget.php:63
+msgid "No"
+msgstr ""
+
+#: views/admin/widget.php:71
+msgid "Number of items to show"
+msgstr ""
+
+#: views/admin/page-settings.php:9
+msgid "Post Views Counter - Settings"
+msgstr ""
+
+#: views/admin/page-settings.php:18
+msgid "Import counter data from another plugins"
+msgstr ""
+
+#: views/admin/page-settings.php:20
+msgid "Supported plugins : <a href="http://wordpress.org/plugins/wp-postviews/">WP-Post-Views</a>, <a href="http://wordpress.org/plugins/baw-post-views-count/faq/">BAW Post Views Count</a>"
+msgstr ""
+
+#: views/admin/page-settings.php:22
+msgid "<strong>Caution</strong>: This process performs both data import and deletion of old data. Imported values ​​overwrite existing data."
+msgstr ""
+
+#: views/admin/page-settings.php:28
+msgid "Start import"
+msgstr ""
+
+#: views/admin/page-settings.php:32
+msgid "Created by <a href="http://www.herewithme.fr">Amaury Balmer</a> - Funded by <a href="http://beapi.fr">Be API</a> - Ticket, patch, bug, donation and documentation <a href="https://github.com/herewithme/bea-post-views-counter">on Github !</a> "
+msgstr ""
+
+#: views/admin/page-settings.php:33
+msgid "Plugin written with poetry, no ads, no viruses, no spyware."
+msgstr ""
+
+#: views/client/widget.php:12
+msgid "No items actually for this custom post type."
+msgstr ""
+
+#: views/client/widget.php:23 classes/admin/main.php:36
+msgid " views"
+msgstr ""
+
+#: librairies/wordpress-settings-api-class/class.settings-api.php:348
+msgid "Browse"
+msgstr ""
+
+#: librairies/wordpress-settings-api-class/class.settings-api.php:507
+msgid "No section available"
+msgstr ""
+
+#: classes/plugin.php:59
+msgid "Current day"
+msgstr ""
+
+#: classes/plugin.php:60
+msgid "Yesterday"
+msgstr ""
+
+#: classes/plugin.php:61
+msgid "Current week"
+msgstr ""
+
+#: classes/plugin.php:62
+msgid "Previous week"
+msgstr ""
+
+#: classes/plugin.php:63
+msgid "Current month"
+msgstr ""
+
+#: classes/plugin.php:64
+msgid "Previous month"
+msgstr ""
+
+#: classes/plugin.php:65
+msgid "Current year"
+msgstr ""
+
+#: classes/plugin.php:66
+msgid "Previous year"
+msgstr ""
+
+#: classes/plugin.php:67
+msgid "Total"
+msgstr ""
+
+#: classes/widget.php:8
+msgid "Most viewed content"
+msgstr ""
+
+#: classes/widget.php:8
+msgid "The most viewed content on your site"
+msgstr ""
+
+#: classes/widget.php:81
+msgid "Most popular"
+msgstr ""
+
+#: classes/widget.php:101
+msgid "Date"
+msgstr ""
+
+#: classes/widget.php:102
+msgid "ID"
+msgstr ""
+
+#: classes/widget.php:104
+msgid "Views"
+msgstr ""
+
+#: classes/admin/main.php:24
+msgid "Counter"
+msgstr ""
+
+#: classes/admin/main.php:52
+msgid "Counters views were imported successfully! %d lines."
+msgstr ""
+
+#: classes/admin/main.php:54
+msgid "No data has been imported. Either you have not installed these plugins, or the data has been purged."
+msgstr ""
+
+#: classes/admin/settings.php:27
+msgid "BEA Post Views Counter"
+msgstr ""
+
+#: classes/admin/settings.php:27
+msgid "Post Views Counter"
+msgstr ""
+
+#: classes/admin/settings.php:64 classes/admin/settings.php:65
+msgid "General"
+msgstr ""
+
+#: classes/admin/settings.php:82
+msgid "Counter mode"
+msgstr ""
+
+#: classes/admin/settings.php:86
+msgid "Inline"
+msgstr ""
+
+#: classes/admin/settings.php:87
+msgid "JS call with WordPress (default, best compromise)"
+msgstr ""
+
+#: classes/admin/settings.php:88
+msgid "JS call with pure PHP script (best performance)"
+msgstr ""
+
+#: classes/admin/settings.php:90
+msgid "Mode <strong>inline</strong> is the simplest, most reliable, but it is not compatible with plugins static cache.<br />The two modes "JS Call" add asynchronous JavaScript code in the footer of your site for compatibilizing the number of views. The difference between <strong>WordPress</strong> and <strong>PHP Pure</strong> is the mechanism used to update the counters in the database. The <strong>pure PHP</strong> mode is on average 10 times more efficient than the WP mode because it does not load WordPress!<br />However, the <strong>pure PHP</strong> mode sometimes have problems operating in some accommodation, this is the reason why this is not the default mode."
+msgstr ""
+
+#: classes/admin/settings.php:94
+msgid "Include"
+msgstr ""
+
+#: classes/admin/settings.php:98
+msgid "Everyone"
+msgstr ""
+
+#: classes/admin/settings.php:99
+msgid "Guests only"
+msgstr ""
+
+#: classes/admin/settings.php:100
+msgid "Users logged only"
+msgstr ""
+
+#: classes/admin/settings.php:102
+msgid "Note that this setting does not work with pure PHP mode, all visitors will be recorded."
+msgstr ""
+
+#: classes/admin/settings.php:106
+msgid "Exclude"
+msgstr ""
+
+#: classes/admin/settings.php:108
+msgid "Robots (search, etc)"
+msgstr ""
+
+#: classes/admin/settings.php:109
+msgid "Administrators"
+msgstr ""
+
+#: classes/admin/settings.php:112
+msgid "It is important to exclude robots counters views because they regularly browsing your site and they distort the statistics. Note that the exclusion of users logged in with the administrator role does not work with pure PHP mode."
+msgstr ""
+
+#: classes/admin/settings.php:116
+msgid "Exclude IPs:"
+msgstr ""
+
+#: classes/admin/settings.php:117
+msgid "You can exclude IP addresses of your choice, separate them with commas."
+msgstr ""
+
+#: classes/admin/settings.php:123
+msgid "Session"
+msgstr ""
+
+#: classes/admin/settings.php:124
+msgid "Increment only once counter per user session?"
+msgstr ""
+
+#: classes/admin/settings.php:127
+msgid "This setting prevents manipulation counters views. It allows only one counter increments during a browsing session of the user. This feature uses the PHP SESSION, to avoid technical limitations of cookies. Finally, it reduces the performance of your server if your site generates a lot of traffic!"
+msgstr ""
+
+#: classes/shortcode.php:18
+msgid "This content has been viewed "
+msgstr ""
+
+#: classes/shortcode.php:19
+msgid " times in total"
+msgstr ""
