@@ -403,11 +403,11 @@ class BEA_PVC_Counter {
 		}
 		
 		// Compare DB mode with current mode...
-		if ( isset($current_options['mode']) && $current_options['mode'] == 'inline' && (defined('BEA_PVC_PHP_MODE') || defined('DOING_AJAX')) ) { // Inline counter
+		if ( isset($current_options['mode']) && $current_options['mode'] == 'inline' && (defined('BEA_PVC_PHP_MODE') || defined('DOING_AJAX') || defined( 'REST_REQUEST' ) ) ) { // Inline counter
 			return false;
 		} elseif ( isset($current_options['mode']) && $current_options['mode'] == 'js-php' && !defined('BEA_PVC_PHP_MODE') ) { // Pure PHP
 			return false;
-		} elseif ( isset($current_options['mode']) && !in_array($current_options['mode'], array('js-php', 'inline')) && !defined('DOING_AJAX') ) { // Default JS WP
+		} elseif ( isset($current_options['mode']) && !in_array($current_options['mode'], array('js-php', 'inline')) && !defined('DOING_AJAX')  && !defined( 'REST_REQUEST' ) ) { // Default JS WP
 			return false;
 		}
 		

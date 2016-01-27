@@ -6,7 +6,8 @@ class BEA_PVC_Main {
 	public function __construct() {
 		// Load translation
 		add_action('init', array(__CLASS__, 'init'));
-		
+		add_action( 'rest_api_init', array( __CLASS__, 'rest_api_init' ) );
+
 		// Ajax count request
 		add_action('wp_ajax_'.'bea-pvc-counter', array(__CLASS__, 'wp_ajax_callback'));
 		add_action('wp_ajax_nopriv_'.'bea-pvc-counter', array(__CLASS__, 'wp_ajax_callback'));
@@ -23,6 +24,16 @@ class BEA_PVC_Main {
 	 */
 	public static function init() {
 		load_plugin_textdomain('bea-post-views-counter', false, basename(BEA_PVC_DIR) . '/languages');
+	}
+
+	public static function rest_api_init() {
+
+		_bea_pb_load_files(BEA_PVC_DIR . 'classes/rest/', array('view-controller', 'fields'));
+		// Rest API controller.
+		$controller = new BEA_PVC_Counter_Rest_Controller;
+		$controller->register_routes();
+
+		BEA_PVC_Counter_Rest_Field::rest_api_init();
 	}
 	
 	/**
