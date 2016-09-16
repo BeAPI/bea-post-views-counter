@@ -1,0 +1,13 @@
+{
+	"name":"bea/bea-post-views-counter",
+	"description":"Counts views for any post type. Compatible with static cache plugins and also full PHP implementation.",
+	"minimum-stability":"stable",
+	"license":"GPL-2.0",
+	"authors":[
+		{
+			"name":"BeAPI",
+			"email":"technique@beapi.fr"
+		}
+	],
+	"type":"wordpress-plugin"
+}
