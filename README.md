@@ -1,4 +1,11 @@
 # BEA Post Views Counter #
+
+## Description ##
+
+Enables you to display how many times a post, page and any post type had been viewed. Designed for high-traffic sites, performance, security & scalability.
+
+## Important to know ##
+
 **Contributors:** momo360modena  
 **Donate link:** http://beapi.fr/donate/  
 **Tags:** counter, hits, postviews, views, count, popular, popular post, stats, view, views, widget  
@@ -7,10 +14,6 @@
 **Stable tag:** 0.5.1
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
-
-Enables you to display how many times a post, page and any post type had been viewed. Designed for high-traffic sites, performance, security & scalability.
-
-## Description ##
 
 Counters are available at several intervals, current day, day -1, current week, week -1, current month, -1 month, current year, year -1 and total off course!
 
@@ -46,23 +49,32 @@ No, this plugin written with poetry, no ads, no viruses, no spyware.
 
 ## Screenshots ##
 
-###1. Plugin settings###
+### 1. Plugin settings
 ![Plugin settings](http://s.wordpress.org/extend/plugins/bea-post-views-counter/screenshot-1.png)
 
-###2. Shortcode###
+### 2. Shortcode
 ![Shortcode](http://s.wordpress.org/extend/plugins/bea-post-views-counter/screenshot-2.png)
 
-###3. Widget###
+### 3. Widget
 ![Widget](http://s.wordpress.org/extend/plugins/bea-post-views-counter/screenshot-3.png)
-
 
 ## Changelog ##
 
-* Version 0.5.1
-	* Change hook parse_query for pre_get_posts. More compatible.
-* Version 0.5
-	* Move full PHP implementation into an addon (https://github.com/herewithme/bea-post-views-counter-fullphp-addon)
-* Version 0.4
-	* Minor changes on pure PHP counter
-* Version 0.3 
-	* First public version
+### 0.6.0
+* 29 Jun 2015
+* Add composer
+* Fix domain
+* Integrate the full php addon
+
+### 0.5.1
+* 10 Oct 2013
+* Change hook parse_query for pre_get_posts. More compatible.
+
+### 0.5
+* Move full PHP implementation into an addon (https://github.com/herewithme/bea-post-views-counter-fullphp-addon)
+
+### 0.4
+* Minor changes on pure PHP counter
+
+### 0.3 
+* First public version
