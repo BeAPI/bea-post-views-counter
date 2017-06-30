@@ -60,6 +60,10 @@ No, this plugin written with poetry, no ads, no viruses, no spyware.
 
 ## Changelog ##
 
+### 0.6.1
+* 30 Jun 2017
+* Add filter on posts_where to get elements on real current_month, current_day, current_week, current_year not on all counters
+
 ### 0.6.0
 * 29 Jun 2015
 * Add composer
