@@ -60,6 +60,10 @@ No, this plugin written with poetry, no ads, no viruses, no spyware.
 
 ## Changelog ##
 
+### 0.6.3
+* 11 Oct 2017
+* Fix deprecated PHP4 style class constructor on Mysqli PHP Class
+
 ### 0.6.2
 * 10 Oct 2017
 * Use Mysqli version librarie
