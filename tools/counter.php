@@ -109,9 +109,10 @@ class BEA_PVC_Counter_Full_PHP extends BEA_PVC_Counter {
 $id = isset( $_GET['post_id'] ) ? (int)$_GET['post_id'] : 0 ;
 $blog_id  = isset( $_GET['blog_id'] ) ? (int)$_GET['blog_id'] : 0 ;
 
-if ( 0 === $id || 1 < $blog_id ) {
+if ( 0 === $id || $blog_id <= 0 ) {
 	die( '0' ); // Invalid call
 }
+
 // Init counter and increment
 $counter = new BEA_PVC_Counter_Full_PHP( $id, $blog_id );
 $result = $counter->increment();
