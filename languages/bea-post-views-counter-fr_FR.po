@@ -268,9 +268,9 @@ msgstr "Ce réglage empêche que le compteur se fasse manipuler. Le compteur ne 
 
 #: classes/shortcode.php:18
 msgid "This content has been viewed "
-msgstr "Ce contenu a été vu"
+msgstr "Ce contenu a été vu "
 
 #: classes/shortcode.php:19
 msgid " times in total"
-msgstr "fois au total"
+msgstr " fois au total"
 
