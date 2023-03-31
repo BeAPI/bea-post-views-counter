@@ -11,7 +11,7 @@ Enables you to display how many times a post, page and any post type had been vi
 **Tags:** counter, hits, postviews, views, count, popular, popular post, stats, view, views, widget  
 **Requires at least:** 3.1  
 **Tested up to:** 3.5.1  
-**Stable tag:** 0.6.5
+**Stable tag:** 0.6.6
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -60,7 +60,11 @@ No, this plugin written with poetry, no ads, no viruses, no spyware.
 
 ## Changelog ##
 
-### 0.6.4
+### 0.6.6
+* 31 Mar 2023
+* Fix missing spaces in french counter message translation
+
+### 0.6.5
 * 4 Jan 2019
 * Fix condition error on mutlisite environment for counters
 
