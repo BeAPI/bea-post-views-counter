@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="938aaa2f-b2c5-4396-8578-2c0f310c8ffa" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/classes/shortcode.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/shortcode.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/template.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/template.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/languages/bea-post-views-counter-fr_FR.mo" beforeDir="false" afterPath="$PROJECT_DIR$/languages/bea-post-views-counter-fr_FR.mo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/languages/bea-post-views-counter-fr_FR.po" beforeDir="false" afterPath="$PROJECT_DIR$/languages/bea-post-views-counter-fr_FR.po" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/languages/bea-post-views-counter.pot" beforeDir="false" afterPath="$PROJECT_DIR$/languages/bea-post-views-counter.pot" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="evol/sprintf-counter-text" />
+                    <option name="lastUsedInstant" value="1680264919" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1680264250" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="fix/before-after-fr" />
+                    <option name="lastUsedInstant" value="1680264249" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2NmAoB0huYPLzcZYTIWQYZerhl7" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/jkervran/Developer/bea-post-views-counter",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="938aaa2f-b2c5-4396-8578-2c0f310c8ffa" name="Changes" comment="" />
+      <created>1680259062989</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680259062989</updated>
+      <workItem from="1680259065186" duration="747000" />
+      <workItem from="1680265280257" duration="12000" />
+      <workItem from="1680265976823" duration="212000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

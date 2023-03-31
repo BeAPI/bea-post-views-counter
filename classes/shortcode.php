@@ -15,8 +15,6 @@ class BEA_PVC_Shortcode {
 	public static function shortcode( $atts ) {
 		$atts = shortcode_atts( array(
 			'time' => 'total',
-			'before' => __('This content has been viewed ', 'bea-post-views-counter'),
-			'after' => __(' times in total', 'bea-post-views-counter'),
 			'post_id' => 0
 		), $atts );
 		
@@ -26,6 +24,6 @@ class BEA_PVC_Shortcode {
 			$atts['post_id'] = $post->ID;
 		}
 		
-		return get_the_post_views_counter( $atts['time'], $atts['before'], $atts['after'], $atts['post_id'] );
+		return get_the_post_views_counter( $atts['time'], $atts['post_id'] );
 	}
 }

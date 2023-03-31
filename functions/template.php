@@ -21,7 +21,7 @@ function the_post_views_counter( $field = 'total', $before = '', $after = '', $p
  * @param integer $post_id
  * @return string|boolean
  */
-function get_the_post_views_counter( $field = 'total', $before = '', $after = '', $post_id = 0 ) {
+function get_the_post_views_counter( $field = 'total', $post_id = 0 ) {
 	if ( $post_id == 0 ) {
 		global $post;
 		$post_id = (int) $post->ID;
@@ -34,5 +34,5 @@ function get_the_post_views_counter( $field = 'total', $before = '', $after = ''
 	$field = BEA_PVC_Plugin::_get_db_interval( $field );
 
 	$counter = new BEA_PVC_Counter( $post_id );
-	return $before . (int) $counter->get_data_value( $field ) . $after;
+	return sprintf( __( 'This post has been viewed %d times in total', 'bea-post-views-counter' ), (int) $counter->get_data_value( $field ) );
 }
