@@ -24,7 +24,7 @@ class BEA_PVC_Plugin {
 			`post_id` bigint(20) NOT NULL,
 			`day_counter` int(20) NOT NULL DEFAULT '0',
 			`day_date` datetime NOT NULL,
-			`previous_day_counter` int(20) NOT NULL DEFAULT '0',.
+			`previous_day_counter` int(20) NOT NULL DEFAULT '0',
 			`week_counter` int(20) NOT NULL DEFAULT '0',
 			`week_date` datetime NOT NULL,
 			`previous_week_counter` int(20) NOT NULL DEFAULT '0',
