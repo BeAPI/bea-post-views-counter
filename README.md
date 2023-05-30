@@ -11,7 +11,7 @@ Enables you to display how many times a post, page and any post type had been vi
 **Tags:** counter, hits, postviews, views, count, popular, popular post, stats, view, views, widget  
 **Requires at least:** 3.1  
 **Tested up to:** 3.5.1  
-**Stable tag:** 0.6.7
+**Stable tag:** 0.6.8
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -59,6 +59,11 @@ No, this plugin written with poetry, no ads, no viruses, no spyware.
 ![Widget](http://s.wordpress.org/extend/plugins/bea-post-views-counter/screenshot-3.png)
 
 ## Changelog ##
+
+### 0.6.8
+* 30 may 2023
+* Fix an error in the maybe_create_table() function of the plugin.php file
+* Fix an error where the mysqli_num_rows() function could be passed a boolean instead of a mysqli_result object
 
 ### 0.6.7
 * 4 Apr 2023
