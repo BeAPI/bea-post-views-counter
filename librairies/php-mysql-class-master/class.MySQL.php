@@ -116,7 +116,8 @@ class MySQL {
 	// Executes MySQL query
 	function ExecuteSQL($query){
 		$this->lastQuery 	= $query;
-		if($this->result 	= mysqli_query($this->databaseLink, $query )){
+		$this->result 	= mysqli_query($this->databaseLink, $query );
+		if($this->result instanceof mysqli_result){
 			$this->records 	= @mysqli_num_rows($this->result);
 			$this->affected	= @mysqli_affected_rows($this->databaseLink);
 
