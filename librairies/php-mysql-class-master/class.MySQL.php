@@ -114,26 +114,39 @@ class MySQL {
 	 * ******************/
 
 	// Executes MySQL query
-	function ExecuteSQL($query){
-		$this->lastQuery 	= $query;
-		$this->result 	= mysqli_query($this->databaseLink, $query );
-		if($this->result instanceof mysqli_result){
-			$this->records 	= @mysqli_num_rows($this->result);
-			$this->affected	= @mysqli_affected_rows($this->databaseLink);
+	function ExecuteSQL( $query ) {
+		$this->lastQuery = $query;
 
-			if($this->records > 0){
-				$this->ArrayResults();
-				return $this->arrayedResult;
-			}else{
-				return true;
-			}
+		/**
+		 * cf : https://www.php.net/manual/en/mysqli.query.php
+		 * Returns false on failure.
+		 * For successful queries which produce a result set, such as SELECT, SHOW, DESCRIBE or EXPLAIN,
+		 * mysqli_query() will return a mysqli_result object.
+		 * For other successful queries, mysqli_query() will return true.
+		 */
+		$this->result = mysqli_query( $this->databaseLink, $query );
 
-		}else{
-			$this->lastError = mysqli_error($this->databaseLink);
+		if ( true === $this->result ) {
+			return true;
+		}
+
+		if ( false === $this->result ) {
+			$this->lastError = mysqli_error( $this->databaseLink );
+
 			return false;
 		}
-	}
 
+		$this->records  = @mysqli_num_rows( $this->result );
+		$this->affected = @mysqli_affected_rows( $this->databaseLink );
+
+		if ( $this->records > 0 ) {
+			$this->ArrayResults();
+
+			return $this->arrayedResult;
+		}
+
+		return true;
+	}
 
 	// Adds a record to the database based on the array key names
 	function Insert($vars, $table, $exclude = ''){
