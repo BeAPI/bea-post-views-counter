@@ -6,9 +6,9 @@ It's a PHP class wrapper for handling WordPress [Settings API](http://codex.word
 Version
 ---------------
 
-Stable : 0.3
+Stable : 0.5.0
 
-Dev : 0.4.1
+Dev : 0.5.0
 
 Usage Example
 ---------------
