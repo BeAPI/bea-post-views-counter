@@ -4,8 +4,8 @@ Contributors: tareq1988, momo360modena
 Donate link: http://tareq.wedevs.com/
 Tags: settings, options, admin, class, settings-api
 Requires at least: 3.5
-Tested up to: 3.5.1
-Stable tag: 0.3
+Tested up to: 6.2.x
+Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,14 @@ More about [Settings API](http://codex.wordpress.org/Settings_API).
 1. The options panel build on the fly using the PHP Class
 
 == Changelog ==
+
+= 0.5.O =
+
+* Add PHP8.0 compat (thanks to @f2cmbeapi)
+
+= 0.4.2 =
+
+* Add possibility to make inline description (new desc_type field)
 
 = 0.4.1 =
 

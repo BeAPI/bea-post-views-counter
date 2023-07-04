@@ -2,7 +2,6 @@
 /**
  * weDevs Settings API wrapper class
  *
- * @version 0.4.1
  * @author Tareq Hasan <tareq@weDevs.com>
  * @author Amaury Balmer <amaury@beapi.fr>
  * @link https://github.com/herewithme/wordpress-settings-api-class
@@ -105,9 +104,11 @@ class WeDevs_Settings_API {
                 add_option( $section['id'] );
             }
 
-            if ( isset($section['desc']) && !empty($section['desc']) ) {
+            if ( isset($section['desc']) && !empty( $section[ 'desc' ] ) ) {
                 $section['desc'] = '<div class="inside">'.$section['desc'].'</div>' . PHP_EOL;
-                $callback = create_function('', 'echo "'.str_replace('"', '\"', $section['desc']).'";');
+                $callback = function() use ( $section ) {
+                    echo str_replace( '"', '\"', $section[ 'desc' ] );
+                };
             } else {
                 $callback = '__return_false';
             }
@@ -128,6 +129,7 @@ class WeDevs_Settings_API {
                 $args = array(
                     'id' => $option['name'],
                     'desc' => isset( $option['desc'] ) ? $option['desc'] : '',
+                    'desc_type' => ( isset( $option['desc_type'] ) && $option['desc_type'] == 'inline' ) ? 'span' : 'p',
                     'name' => $option['label'],
                     'section' => $section,
                     'size' => isset( $option['size'] ) ? $option['size'] : null,
@@ -155,6 +157,15 @@ class WeDevs_Settings_API {
     }
 
     /**
+     * Append description, allow 2 formats inline/block
+     */
+    public function append_description( &$html, $args ) {
+        if ( isset($args['desc']) && !empty($args['desc']) ) {
+            $html .= sprintf( '<'.$args['desc_type'].' class="description">%s</'.$args['desc_type'].'>', $args['desc'] ) . PHP_EOL;
+        }
+    }
+
+    /**
      * Displays a text field for a settings field
      *
      * @param array   $args settings field args
@@ -164,10 +175,7 @@ class WeDevs_Settings_API {
         $size  = isset( $args['size'] ) && !is_null( $args['size'] ) ? $args['size'] : 'regular';
 
         $html  = sprintf( '<input type="text" class="%1$s-text" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value ) . PHP_EOL;
-
-        if ( isset($args['desc']) && !empty($args['desc']) ) {
-            $html .= sprintf( '<p class="description">%s</p>', $args['desc'] ) . PHP_EOL;
-        }
+        $this->append_description($html, $args);
 
         echo $html;
     }
@@ -191,10 +199,7 @@ class WeDevs_Settings_API {
         $html  = sprintf( '<input type="hidden" name="%1$s[%2$s]" value="off" />', $args['section'], $args['id'] ) . PHP_EOL;
         $html .= sprintf( '<input type="checkbox" class="checkbox" id="%1$s[%2$s]" name="%1$s[%2$s]" value="on"%4$s />', $args['section'], $args['id'], $value, checked( $value, 'on', false ) ) . PHP_EOL;
         $html .= sprintf( '<label for="%1$s[%2$s]">%3$s</label>', $args['section'], $args['id'], $label ) . PHP_EOL;
-
-        if ( !empty($description) ) {
-            $html .= sprintf( '<p class="description">%s</p>', $description ) . PHP_EOL;
-        }
+        $this->append_description($html, $args);
 
         echo $html;
     }
@@ -213,10 +218,8 @@ class WeDevs_Settings_API {
             $html .= sprintf( '<input type="checkbox" class="checkbox" id="%1$s[%2$s][%3$s]" name="%1$s[%2$s][%3$s]" value="%3$s"%4$s />', $args['section'], $args['id'], $key, checked( $checked, $key, false ) ) . PHP_EOL;
             $html .= sprintf( '<label for="%1$s[%2$s][%4$s]">%3$s</label><br />', $args['section'], $args['id'], $label, $key ) . PHP_EOL;
         }
+        $this->append_description($html, $args);
 
-        if ( isset($args['desc']) && !empty($args['desc']) ) {
-            $html .= sprintf( '<p class="description">%s</p>', $args['desc'] ) . PHP_EOL;
-        }
         echo $html;
     }
 
@@ -233,10 +236,7 @@ class WeDevs_Settings_API {
             $html .= sprintf( '<input type="radio" class="radio" id="%1$s[%2$s][%3$s]" name="%1$s[%2$s]" value="%3$s"%4$s />', $args['section'], $args['id'], $key, checked( $value, $key, false ) ) . PHP_EOL;
             $html .= sprintf( '<label for="%1$s[%2$s][%4$s]">%3$s</label><br />', $args['section'], $args['id'], $label, $key ) . PHP_EOL;
         }
-
-        if ( isset($args['desc']) && !empty($args['desc']) ) {
-            $html .= sprintf( '<p class="description">%s</p>', $args['desc'] ) . PHP_EOL;
-        }
+        $this->append_description($html, $args);
 
         echo $html;
     }
@@ -256,9 +256,7 @@ class WeDevs_Settings_API {
         }
         $html .= sprintf( '</select>' ) . PHP_EOL;
 
-        if ( isset($args['desc']) && !empty($args['desc']) ) {
-            $html .= sprintf( '<p class="description">%s</p>', $args['desc'] ) . PHP_EOL;
-        }
+        $this->append_description($html, $args);
 
         echo $html;
     }
@@ -273,10 +271,7 @@ class WeDevs_Settings_API {
         $size  = isset( $args['size'] ) && !is_null( $args['size'] ) ? $args['size'] : 'regular';
 
         $html  = sprintf( '<textarea rows="5" cols="55" class="%1$s-text" id="%2$s[%3$s]" name="%2$s[%3$s]">%4$s</textarea>', $size, $args['section'], $args['id'], $value ) . PHP_EOL;
-
-        if ( isset($args['desc']) && !empty($args['desc']) ) {
-            $html .= sprintf( '<p class="description">%s</p>', $args['desc'] ) . PHP_EOL;
-        }
+        $this->append_description($html, $args);
 
         echo $html;
     }
@@ -325,9 +320,9 @@ class WeDevs_Settings_API {
          wp_editor( $value, $args['section'] . '[' . $args['id'] . ']', array( 'teeny' => false, 'textarea_rows' => 10 ) );
         echo '</div>' . PHP_EOL;
 
-        if ( isset($args['desc']) && !empty($args['desc']) ) {
-            printf( '<p class="description">%s</p>', $args['desc'] ) . PHP_EOL;
-        }
+        $html = '';
+        $this->append_description($html, $args);
+        echo $html;
     }
 
     /**
@@ -346,10 +341,7 @@ class WeDevs_Settings_API {
         
         $html  = sprintf( '<input type="text" class="%1$s-text wpsf-url" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value ) . PHP_EOL;
         $html .= '<input type="button" class="button wpsf-browse hide-if-no-js" value="'.__('Browse').'" />' . PHP_EOL;
-
-        if ( isset($args['desc']) && !empty($args['desc']) ) {
-            $html .= sprintf( '<p class="description">%s</p>', $args['desc'] ) . PHP_EOL;
-        }
+        $this->append_description($html, $args);
 
         echo $html;
     }
@@ -364,10 +356,7 @@ class WeDevs_Settings_API {
         $size  = isset( $args['size'] ) && !is_null( $args['size'] ) ? $args['size'] : 'regular';
 
         $html  = sprintf( '<input type="password" class="%1$s-text" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value ) . PHP_EOL;
-        
-        if ( isset($args['desc']) && !empty($args['desc']) ) {
-            $html .= sprintf( '<p class="description">%s</p>', $args['desc'] ) . PHP_EOL;
-        }
+        $this->append_description($html, $args);
 
         echo $html;
     }
