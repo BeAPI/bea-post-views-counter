@@ -60,6 +60,15 @@ No, this plugin written with poetry, no ads, no viruses, no spyware.
 
 ## Changelog ##
 
+### 0.6.9
+*4 Jul 2023
+* Update wordpress-settings-api-class library for php8 compatibility
+
+### 0.6.8
+*30 may 2023
+* Fix an error in the maybe_create_table() function of the plugin.php file
+* Fix an error where the mysqli_num_rows() function could be passed a boolean instead of a mysqli_result object
+
 ### 0.6.7
 *4 Apr 2023
 * Fix missing .mo & .pot files after french translation update
