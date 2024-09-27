@@ -104,4 +104,8 @@ function init_bea_pvc_plugin() {
 	add_action( 'widgets_init', function () {
 		return register_widget("BEA_PVC_Widget");
 	} );
+
+	if ( session_status() === PHP_SESSION_ACTIVE ) {
+		session_write_close();
+	}
 }
