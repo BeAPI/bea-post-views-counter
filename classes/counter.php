@@ -461,6 +461,11 @@ class BEA_PVC_Counter {
 			
 			// Append current view to session
 			$_SESSION['bea_pvc_post_ids'][] = $this->_id;
+
+			// Close session
+			if ( session_status() === PHP_SESSION_ACTIVE ) {
+				session_write_close();
+			}
 		}
 		
 		return true;
