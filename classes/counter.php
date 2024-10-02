@@ -446,8 +446,11 @@ class BEA_PVC_Counter {
 		
 		// Session check
 		if ( isset($current_options['session']) && $current_options['session'] == 'on' ) {
+			$is_session_started = false;
+
 			// Start session here for Pure PHP
 			if (!isset($_SESSION)) {
+				$is_session_started = true;
 				session_start();
 			}
 			
@@ -463,7 +466,10 @@ class BEA_PVC_Counter {
 			$_SESSION['bea_pvc_post_ids'][] = $this->_id;
 
 			// Close session
-			session_write_close();
+			if ( $is_session_started ) {
+				$is_session_started = false;
+				session_write_close();
+			}
 		}
 		
 		return true;
