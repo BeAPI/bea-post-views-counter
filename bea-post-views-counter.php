@@ -1,7 +1,7 @@
 <?php
 /*
  Plugin Name: BEA Post Views Counter
- Version: 0.6.9
+ Version: 0.6.10
  Plugin URI: https://github.com/beapi/bea-post-views-counter
  Description: Counts views for any post type. Compatible with static cache plugins, with an asynchronous AJAX implementation.
  Author: BE API Technical team
