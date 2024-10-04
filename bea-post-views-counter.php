@@ -81,14 +81,6 @@ register_deactivation_hook(__FILE__, array('BEA_PVC_Plugin', 'deactivate'));
 
 add_action('plugins_loaded', 'init_bea_pvc_plugin');
 function init_bea_pvc_plugin() {
-	// Init session
-	$current_options = get_option('bea-pvc-main');
-	if ( isset($current_options['session']) && $current_options['session'] == 'on' ) {
-		if (!isset($_SESSION)) {
-			session_start();
-		}
-	}
-
 	// Client
 	new BEA_PVC_Main();
 	new BEA_PVC_Query();
